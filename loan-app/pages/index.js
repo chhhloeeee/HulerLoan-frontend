@@ -1,11 +1,17 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import Link from 'next/link'
 import { DropdownMenu } from '../components/menu'
+import Image from 'next/image'
+import sunset from '../images/m2.jpeg'
+
+
+
+
 
 export default function Home() {
   return (
     <div className={styles.container}>
+     
       <DropdownMenu/>
       <Head>
         <title>HulerLoan</title>
@@ -14,17 +20,10 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+      <Image src={sunset} width={2000} height={1000} className={styles.background}/>
         <h1 className={styles.title}>
           Welcome to HulerLoan!
         </h1>
-
-        <div className={styles.grid}>
-        <h2 className={styles.card}> Categories &rarr;
-          <Link href="/category/list">
-          <p>View and add categories to loan</p>
-          </Link>
-        </h2>
-        </div>
       </main>
     </div>
   )
