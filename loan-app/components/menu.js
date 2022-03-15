@@ -2,7 +2,7 @@
 
 import { Menu} from '@headlessui/react'
 import Link from 'next/link'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/menu.module.css'
 
 function MyLink(props) {
     let { href, children, ...rest } = props

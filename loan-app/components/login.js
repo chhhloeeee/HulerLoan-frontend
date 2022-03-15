@@ -13,8 +13,9 @@ function MyLink(props) {
 export default function Login() {
     return (
       <div className={style.appHeader}> 
-        <input className={style.uid} type="text" placeholder="Username" onChange={(event) => setUserName(event.target.value)} style={{fontSize:20, width:250}}></input>
-        <input className={style.pwd} type="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)} style={{fontSize:20, width:250}}></input>
+      <h2 className={style.title}>HulerLoan Login</h2>
+        <input className={style.uid} type="text" placeholder="Username" onChange={(event) => setUserName(event.target.value)}></input>
+        <input className={style.pwd} type="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)}></input>
         <MyLink className={style.logbttn} href="/home">Login</MyLink>
       </div>
     );
