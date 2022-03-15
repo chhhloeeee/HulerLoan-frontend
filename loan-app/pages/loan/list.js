@@ -5,7 +5,7 @@ export default function ListLoan() {
       <>
     <h1>Loans</h1>
     <h2>
-        <Link href="/">
+        <Link href="/home">
           <a>Back to home</a>
         </Link>
       </h2>

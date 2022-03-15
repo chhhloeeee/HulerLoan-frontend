@@ -5,7 +5,7 @@ export default function AddLoan() {
       <>
     <h1>New Loan</h1>
     <h2>
-        <Link href="/">
+        <Link href="/home">
           <a>Back to home</a>
         </Link>
       </h2>

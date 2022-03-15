@@ -5,7 +5,7 @@ export default function ListEquipment() {
       <>
     <h1>Equipment</h1>
     <h2>
-        <Link href="/">
+        <Link href="/home">
           <a>Back to home</a>
         </Link>
       </h2>

@@ -1,7 +1,6 @@
 
 
-import { Menu, Transition } from '@headlessui/react'
-import { Fragment} from 'react'
+import { Menu} from '@headlessui/react'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 

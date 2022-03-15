@@ -5,7 +5,7 @@ export default function AddCategory() {
       <>
     <h1>Add Category</h1>
     <h2>
-        <Link href="/">
+        <Link href="/home">
           <a>Back to home</a>
         </Link>
       </h2>
