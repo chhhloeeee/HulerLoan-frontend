@@ -1,24 +1,19 @@
-import Link from "next/link";
 import FormElement from "../../components/form";
 import Button from "../../components/button";
+import styles from '../../styles/form.module.css'
 
 export default function AddCategory() {
   return (
-    <>
-      <h1>Add Category</h1>
-      <h2>
-        <Link href="/home">
-          <a>Back to home</a>
-        </Link>
-      </h2>
-      <div className="form">
+    <div className={styles.app}>
+      <h1 className={styles.title}>Add Category</h1>
+      <div className={styles.form}>
         <form action="" method="post">
           <FormElement
             for="category"
             text="Category"
             type="text"
             name="category"
-            className="input-field"
+            className={styles.inputField}
             required
           ></FormElement>
           <FormElement
@@ -26,7 +21,7 @@ export default function AddCategory() {
             text="Active?"
             type="checkbox"
             name="checkbox"
-            className="checkbox"
+            className={styles.checkbox}
             required
           ></FormElement>
           <label>
@@ -39,6 +34,6 @@ export default function AddCategory() {
         text="Cancel"
         href="/home"
       />
-    </>
+    </div>
   );
 }
