@@ -36,9 +36,8 @@ export default function AddCategory() {
         </form>
       </div>
       <Button
-        className="bttn"
         text="Cancel"
-        onClick={() => navigate({ pathname: "/category" })}
+        href="/home"
       />
     </>
   );

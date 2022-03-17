@@ -1,10 +1,19 @@
 import React from "react";
+import Link from 'next/link'
+import styles from '../styles/form.module.css'
 
-const Button = ({ text, onClick, className }) => {
+function MyLink(props) {
+    let { href, children, ...rest } = props
+    return (
+      <Link href={href}>
+        <a {...rest}>{children}</a>
+      </Link>
+    )
+  }
+
+const Button = ({ text, href}) => {
   return (
-    <button onClick={onClick} className={className}>
-      {text}
-    </button>
+    <MyLink className={styles.bttn} href={href}>{text}</MyLink>
   );
 };
 
