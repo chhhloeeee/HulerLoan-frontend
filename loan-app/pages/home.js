@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { DropdownMenu } from '../components/menu'
 import Image from 'next/image'
@@ -14,7 +13,7 @@ export default function Home() {
      
       <DropdownMenu/>
       <main className={styles.main}>
-      <Image src={sunset} width={2000} height={840} className={styles.background}/>
+      <Image src={sunset} width={2000} height={1020} className={styles.background}/>
         <h1 className={styles.title}>
           Welcome to HulerLoan!
         </h1>
