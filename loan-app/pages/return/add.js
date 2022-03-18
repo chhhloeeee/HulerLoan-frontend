@@ -1,7 +1,4 @@
-import Link from 'next/link'
-
 export default function AddReturn() {
-  let navigate = useNavigate(); 
   var start = new Date()
   start.setDate(start.getDate() - 1)
   const [startDate, setStartDate] = useState(start);
@@ -25,7 +22,10 @@ export default function AddReturn() {
             <label><span> </span><input type="submit" value="Submit" /></label>
             </form>
         </div> 
-        <Button className="bttn" text="Back" onClick={() => navigate({ pathname: "/return"})}/>
+        <Button
+        text="Cancel"
+        href="/home"
+      />
         </div>
   
     )

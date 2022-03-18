@@ -67,12 +67,12 @@
   .form span.required{
     color:red;
   }
-  .form input.inputField ,.form .select-field{ 
+  .form input.inputField ,.form .selectField{ 
     width: 55%;	
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
   }
-  .form input.inputField ,.form .select-field{
+  .form input.inputField ,.form .selectField{
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -86,7 +86,7 @@
     padding: 7px;
     outline: none;
   }
-  .form .inputField:focus .form .select-field{
+  .form .inputField:focus .form .selectField{
     border: 1px solid #09b843;
   }
   .form input[type=submit],
@@ -120,8 +120,4 @@
     position: absolute;
     margin-left: -7.5%;
     margin-top: -10%;
-  }
-  .react-datepicker{
-    margin-left: 42.5%;
-    margin-top: -15%;
   }
