@@ -6,10 +6,12 @@ import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 
 export default function AddLoan() {
+  var end = new Date();
   var start = new Date();
-  start.setDate(start.getDate() - 1);
+  start.setDate(start.getDate());
+  end.setDate(end.getDate() + 1)
   const [startDate, setStartDate] = useState(start);
-  const [endDate, setEndDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(end);
   return (
     <div className={styles.app}>
       <h1 className={styles.title}>New Loan</h1>
