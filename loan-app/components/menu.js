@@ -104,7 +104,7 @@ export function DropdownMenu() {
       <Menu as="div">
         <div>
           <Menu.Button className={styles.topNav}>
-            Logout
+          <MyLink href="/">Logout</MyLink>
           </Menu.Button>
         </div>
       </Menu>
