@@ -9,6 +9,10 @@
     color: white;
   }
 
+  .subtitle{
+    margin-top: 10%;
+  }
+
 .uid, .pwd, .logbttn {
     background-color: white;
     padding: 15px ;
@@ -32,4 +36,18 @@
   top: 5%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.accountBttn{
+  position: absolute;
+  left:5%;
+  bottom: 5%;
+  text-decoration: underline;
+}
+
+.registerBttn{
+  position: absolute;
+  right:5%;
+  bottom: 5%;
+  text-decoration: underline;
 }
