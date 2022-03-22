@@ -3,10 +3,6 @@ import { DropdownMenu } from '../components/menu'
 import Image from 'next/image'
 import sunset from '../images/m2.jpeg'
 
-
-
-
-
 export default function Home() {
   return (
     <div className={styles.container}>

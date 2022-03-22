@@ -10,11 +10,11 @@ function MyLink(props) {
   );
 }
 
-export default function UserLogin() {
+export default function AdminLogin() {
   return (
     <div className={style.appHeader}>
       <h2 className={style.title}>HulerLoan Login</h2>
-      <p className={style.subtitle}>User</p>
+      <p className={style.subtitle}>Admin</p>
       <input className={style.uid} type="text" placeholder="Username"></input>
       <input
         className={style.pwd}
