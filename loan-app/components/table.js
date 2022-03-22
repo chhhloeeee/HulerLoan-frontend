@@ -1,8 +1,6 @@
 import {useState, useEffect} from 'react';
-import { StatusPage } from '../pages/status/list';
-import './components.css';
 
-export function Table({headers, rows, onRefresh}) {
+function Table({headers, rows, onRefresh}) {
     const [pageNumber, setPageNumber] = useState(1)
     const [autoScroll, setAutoScroll] = useState(true)
     const [intervalID, setIntervalID] = useState(null)
@@ -162,3 +160,5 @@ let ctr = 0;
         } 
         timer = 5000;
 };
+
+export default Table;

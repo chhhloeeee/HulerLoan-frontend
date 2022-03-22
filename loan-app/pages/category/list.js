@@ -1,5 +1,6 @@
 import Button from "../../components/button";
 import styles from '../../styles/form.module.css'
+import Table from '../../components/table'
 
 export default function ListCategory() {
   return (
