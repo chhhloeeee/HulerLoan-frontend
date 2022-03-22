@@ -10,11 +10,11 @@ function MyLink(props) {
   );
 }
 
-export default function Login() {
+export default function UserLogin() {
   return (
     <div className={style.appHeader}>
       <h2 className={style.title}>HulerLoan Login</h2>
-      <p className={style.subtitle}>Admin</p>
+      <p className={style.subtitle}>User</p>
       <input className={style.uid} type="text" placeholder="Username"></input>
       <input
         className={style.pwd}
@@ -24,7 +24,7 @@ export default function Login() {
       <MyLink className={style.logbttn} href="/home">
         Login
       </MyLink>
-      <MyLink className={style.accountBttn} href="/userLogin">
+      <MyLink className={style.accountBttn} href="/">
         Switch account type?
       </MyLink>
       <MyLink className={style.registerBttn} href="/register">
