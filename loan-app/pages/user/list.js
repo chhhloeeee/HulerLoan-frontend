@@ -1,14 +1,11 @@
-import Link from 'next/link'
+import Button from "../../components/button";
+import styles from '../../styles/form.module.css'
 
 export default function ListUsers() {
     return (
-      <>
-    <h1>Users</h1>
-    <h2>
-        <Link href="/home">
-          <a>Back to home</a>
-        </Link>
-      </h2>
-    </>
+      <div className={styles.app}>
+      <h1 className={styles.title}>Users</h1>
+      <Button text="Cancel" href="/home" />
+    </div>
     )
   }

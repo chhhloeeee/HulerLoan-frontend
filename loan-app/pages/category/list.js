@@ -1,14 +1,11 @@
-import Link from 'next/link'
+import Button from "../../components/button";
+import styles from '../../styles/form.module.css'
 
 export default function ListCategory() {
-    return (
-      <>
-    <h1>Categories</h1>
-    <h2>
-        <Link href="/home">
-          <a>Back to home</a>
-        </Link>
-      </h2>
-    </>
-    )
-  }
+  return (
+    <div className={styles.app}>
+      <h1 className={styles.title}>Categories</h1>
+      <Button text="Cancel" href="/home" />
+    </div>
+  );
+}
