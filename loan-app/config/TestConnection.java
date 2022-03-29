@@ -6,7 +6,7 @@ public class TestConnection {
          try {
                 Class.forName("com.mysql.jdbc.Driver");
                 System.out.println("Loaded driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost/mysql?user=root&password=chloeMouse1!");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql?user=root&password=chloeMouse1!");
                 System.out.println("Connected to MySQL");
                 con.close();
          } 
