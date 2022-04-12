@@ -9,15 +9,15 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userID;
-    private String firstName;
-    private String lastName;
-    private String emailId;
+    private String name;
+    private String password;
+    private String email;
 
-    public UserEntity(Integer userID, String firstName, String lastName, String emailId) {
+    public UserEntity(Integer userID, String name, String password, String email) {
         this.userID = userID;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.emailId = emailId;
+        this.name = name;
+        this.password = password;
+        this.email = email;
     }
 
     public UserEntity() {
@@ -31,27 +31,27 @@ public class UserEntity {
         this.userID = userID;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getPassword() {
+        return password;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getEmailId() {
-        return emailId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

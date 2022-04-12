@@ -37,9 +37,9 @@ public class UserServiceImpl implements UserService{
                 .stream()
                 .map(userEntity -> new User(
                         userEntity.getId(),
-                        userEntity.getFirstName(),
-                        userEntity.getLastName(),
-                        userEntity.getEmailId()
+                        userEntity.getName(),
+                        userEntity.getPassword(),
+                        userEntity.getEmail()
                 ))
                 .collect(Collectors.toList());
 
@@ -66,9 +66,9 @@ public class UserServiceImpl implements UserService{
     public User updateUser(Integer userID, User user) {
         UserEntity userEntity =
                 userRepository.findById(userID).get();
-        userEntity.setEmailId(user.getEmail());
-        userEntity.setFirstName(user.getName());
-        userEntity.setLastName(user.getPassword());
+        userEntity.setEmail(user.getEmail());
+        userEntity.setName(user.getName());
+        userEntity.setPassword(user.getPassword());
 
         userRepository.save(userEntity);
         return user;
