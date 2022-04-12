@@ -38,7 +38,7 @@ public class User {
         this.emailId = emailId;
     }
 
-    public User(long l, String firstName, String lastName, String emailId) {
+    public User(Integer l, String firstName, String lastName, String emailId) {
         this.userID = l;
         this.firstName = firstName;
         this.lastName = lastName;
