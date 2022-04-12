@@ -6,7 +6,6 @@ public class User {
     private String password;
     private Boolean admin;
     private String email;
-    private String address;
 
     public Integer getId() {
         return userID;
