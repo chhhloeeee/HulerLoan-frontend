@@ -1,17 +1,17 @@
 package com.loan.system.model;
 
 public class User {
-    private long id;
+    private Integer userID;
     private String firstName;
     private String lastName;
     private String emailId;
 
-    public long getId() {
-        return id;
+    public Integer getId() {
+        return userID;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(Integer userID) {
+        this.userID = userID;
     }
 
     public String getFirstName() {
@@ -38,8 +38,8 @@ public class User {
         this.emailId = emailId;
     }
 
-    public User(long id, String firstName, String lastName, String emailId) {
-        this.id = id;
+    public User(long l, String firstName, String lastName, String emailId) {
+        this.userID = l;
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailId = emailId;
