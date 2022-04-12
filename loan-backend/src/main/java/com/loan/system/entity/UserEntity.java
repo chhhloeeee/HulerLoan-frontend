@@ -8,13 +8,13 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer userID;
     private String firstName;
     private String lastName;
     private String emailId;
 
-    public UserEntity(long id, String firstName, String lastName, String emailId) {
-        this.id = id;
+    public UserEntity(Integer userID, String firstName, String lastName, String emailId) {
+        this.userID = userID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailId = emailId;
@@ -23,12 +23,12 @@ public class UserEntity {
     public UserEntity() {
     }
 
-    public long getId() {
-        return id;
+    public Integer getId() {
+        return userID;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(Integer userID) {
+        this.userID = userID;
     }
 
     public String getFirstName() {
