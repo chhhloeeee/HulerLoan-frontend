@@ -47,25 +47,25 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User getUserById(Long id) {
+    public User getUserById(Integer userID) {
         UserEntity userEntity
-                = userRepository.findById(id).get();
+                = userRepository.findById(userID).get();
         User user = new User();
         BeanUtils.copyProperties(userEntity, user);
         return user;
     }
 
     @Override
-    public boolean deleteUser(Long id) {
-        UserEntity user =  userRepository.findById(id).get();
+    public boolean deleteUser(Integer userID) {
+        UserEntity user =  userRepository.findById(userID).get();
         userRepository.delete(user);
         return true;
     }
 
     @Override
-    public User updateUser(Long id, User user) {
+    public User updateUser(Integer userID, User user) {
         UserEntity userEntity =
-                userRepository.findById(id).get();
+                userRepository.findById(userID).get();
         userEntity.setEmailId(user.getEmailId());
         userEntity.setFirstName(user.getFirstName());
         userEntity.setLastName(user.getLastName());

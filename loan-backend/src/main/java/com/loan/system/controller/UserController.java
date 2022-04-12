@@ -32,26 +32,26 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/users/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
+    @GetMapping("/users/{userID}")
+    public ResponseEntity<User> getUserById(@PathVariable("userID") Integer userID) {
         User user = null;
-        user = userService.getUserById(id);
+        user = userService.getUserById(userID);
         return ResponseEntity.ok(user);
     }
 
-    @DeleteMapping("/users/{id}")
-    public ResponseEntity<Map<String,Boolean>> deleteEmployee(@PathVariable("id") Long id) {
+    @DeleteMapping("/users/{userID}")
+    public ResponseEntity<Map<String,Boolean>> deleteEmployee(@PathVariable("userID") Integer userID) {
         boolean deleted = false;
-        deleted =userService.deleteUser(id);
+        deleted =userService.deleteUser(userID);
         Map<String,Boolean> response = new HashMap<>();
         response.put("deleted", deleted);
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("/users/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable("id") Long id,
+    @PutMapping("/users/{userID}")
+    public ResponseEntity<User> updateUser(@PathVariable("userID") Integer userID,
                                            @RequestBody User user) {
-        user = userService.updateUser(id,user);
+        user = userService.updateUser(userID,user);
         return ResponseEntity.ok(user);
     }
 
