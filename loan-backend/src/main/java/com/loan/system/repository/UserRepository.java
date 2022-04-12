@@ -1,6 +1,7 @@
-package com.dailycodebuffer.usersystem.repository;
+package com.loan.system.repository;
 
-import com.dailycodebuffer.usersystem.entity.UserEntity;
+import com.loan.system.entity.UserEntity;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

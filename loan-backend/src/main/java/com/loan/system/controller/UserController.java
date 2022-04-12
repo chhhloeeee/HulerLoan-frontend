@@ -1,14 +1,15 @@
-package com.dailycodebuffer.usersystem.controller;
+package com.loan.system.controller;
 
-import com.dailycodebuffer.usersystem.model.User;
-import com.dailycodebuffer.usersystem.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.loan.system.model.User;
+import com.loan.system.service.UserService;
 
 @CrossOrigin(value = "http://localhost:3000")
 @RestController

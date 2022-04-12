@@ -1,14 +1,15 @@
-package com.dailycodebuffer.usersystem.service;
+package com.loan.system.service;
 
-import com.dailycodebuffer.usersystem.entity.UserEntity;
-import com.dailycodebuffer.usersystem.model.User;
-import com.dailycodebuffer.usersystem.repository.UserRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
+//import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.loan.system.entity.UserEntity;
+import com.loan.system.model.User;
+import com.loan.system.repository.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService{

@@ -1,10 +1,27 @@
-package com.dailycodebuffer.usersystem.model;
+package com.loan.system.entity;
 
-public class User {
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users")
+public class UserEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String firstName;
     private String lastName;
     private String emailId;
+
+    public UserEntity(long id, String firstName, String lastName, String emailId) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailId = emailId;
+    }
+
+    public UserEntity() {
+    }
 
     public long getId() {
         return id;
@@ -36,15 +53,5 @@ public class User {
 
     public void setEmailId(String emailId) {
         this.emailId = emailId;
-    }
-
-    public User(long id, String firstName, String lastName, String emailId) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.emailId = emailId;
-    }
-
-    public User() {
     }
 }
