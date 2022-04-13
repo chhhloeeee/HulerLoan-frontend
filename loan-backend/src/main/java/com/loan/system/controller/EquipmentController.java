@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,5 +53,12 @@ public class EquipmentController {
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", deleted);
         return ResponseEntity.ok(response);
+    }
+
+    @PutMapping("equipement/{equipmentID}")
+    public ResponseEntity<Equipment> updateEquipment(@PathVariable("equipmentID") Integer equipmentID,
+                                                    @RequestBody Equipment equipment){
+        equipment = equipmentService.updateEquipment(equipmentID, equipment);
+        return ResponseEntity.ok(equipment);
     }
 }

@@ -59,5 +59,17 @@ public class EquipmentServiceImpl implements EquipmentService {
         equipmentRepository.delete(equipment);
         return true;
     }
+
+    @Override
+    public Equipment updateEquipment(Integer equipmentID, Equipment equipment) {
+        EquipmentEntity equipmentEntity = 
+                equipmentRepository.findById(equipmentID).get();
+        equipmentEntity.setCategoryID(equipment.getCategoryID());
+        equipmentEntity.setSpecsID(equipment.getSpecsID());
+        equipmentEntity.setAvailability(equipment.getAvailability());
+
+        equipmentRepository.save(equipmentEntity);
+        return equipment;
+    }
     
 }
