@@ -52,5 +52,12 @@ public class EquipmentServiceImpl implements EquipmentService {
             BeanUtils.copyProperties(equipmentEntity, equipment);
         return equipment;
     }
+
+    @Override
+    public boolean deletedEquipment(Integer equipmentID) {
+        EquipmentEntity equipment = equipmentRepository.findById(equipmentID).get();
+        equipmentRepository.delete(equipment);
+        return true;
+    }
     
 }

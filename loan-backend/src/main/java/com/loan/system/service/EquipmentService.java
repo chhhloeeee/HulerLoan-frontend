@@ -10,5 +10,7 @@ public interface EquipmentService {
     List<Equipment> getAllEquipment();
 
     Equipment getEquipmentById(Integer equipmentID);
+
+    boolean deletedEquipment(Integer equipmentID);
     
 }
