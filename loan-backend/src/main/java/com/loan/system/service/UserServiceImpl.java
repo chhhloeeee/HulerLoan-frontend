@@ -1,15 +1,14 @@
 package com.loan.system.service;
 
-import org.springframework.beans.BeanUtils;
-import org.springframework.stereotype.Service;
-//import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.loan.system.entity.UserEntity;
 import com.loan.system.model.User;
 import com.loan.system.repository.UserRepository;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService{
