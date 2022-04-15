@@ -39,7 +39,7 @@ public class EquipmentController {
         return equipmentService.getAllEquipment();
     }
 
-    @GetMapping("equipment/{equipmentID}")
+    @GetMapping("/equipment/{equipmentID}")
     public ResponseEntity<Equipment> getEquipmentById(@PathVariable("equipmentID") Integer equipmentID){
         Equipment equipment = null;
         equipment = equipmentService.getEquipmentById(equipmentID);
@@ -55,7 +55,7 @@ public class EquipmentController {
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("equipement/{equipmentID}")
+    @PutMapping("/equipement/{equipmentID}")
     public ResponseEntity<Equipment> updateEquipment(@PathVariable("equipmentID") Integer equipmentID,
                                                     @RequestBody Equipment equipment){
         equipment = equipmentService.updateEquipment(equipmentID, equipment);
