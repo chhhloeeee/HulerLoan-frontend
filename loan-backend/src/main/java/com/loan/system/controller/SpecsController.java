@@ -1,6 +1,5 @@
 package com.loan.system.controller;
 
-import com.loan.system.entity.SpecsEntity;
 import com.loan.system.model.Specs;
 import com.loan.system.service.SpecsService;
 
