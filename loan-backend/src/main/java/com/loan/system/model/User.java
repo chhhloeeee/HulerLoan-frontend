@@ -46,8 +46,8 @@ public class User {
         this.email = email;
     }
 
-    public User(Integer l, String name, String password,boolean admin, String email) {
-        this.userID = l;
+    public User(Integer userID, String name, String password,boolean admin, String email) {
+        this.userID = userID;
         this.name = name;
         this.password = password;
         this.admin = admin;
