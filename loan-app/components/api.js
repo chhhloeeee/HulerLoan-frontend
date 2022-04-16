@@ -7,10 +7,10 @@ export const APILoader = ({url, Component, reloadWith}) => {
   const [error, setError] = useState(null)
   
   const fetchData = () => {
-      console.log(json.status)
       fetch(url)
       .then((response) => response.json())
       .then((json) => {
+          console.log(json.status);
         if (json.status !== "ok") {
           throw Error("Internal Server Error")
         }
