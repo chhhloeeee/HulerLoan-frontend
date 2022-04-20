@@ -15,12 +15,14 @@ export const APILoader = ({url, Component, reloadWith}) => {
       .catch((err) => setError(err))
       .finally(() => setIsLoaded(true)); 
       
+      console.log(response)
   }
   useEffect(fetchData, reloadWith || [])
 
+
   if (!isLoaded) {
     return (
-        <h1 className={styles.title}>Loading...</h1>
+        <h1 className={styles.loaded}>Loading...</h1>
     )
   } 
   if (error) {

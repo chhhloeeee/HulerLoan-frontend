@@ -22,10 +22,11 @@ function ListCategory() {
     )
   }
 
-  //USerTable function displays all users in a table
+  //USerTable function displays all equipment in a table
 function CategoryTable({data}){
   //const alert = useAlert() 
   const [category, setCategory] = useState(data)
+  console.log(data)
  
   let categoryList = category.sort((a, b) => {
     if (a.categoryID < b.categoryID) {
@@ -36,26 +37,28 @@ function CategoryTable({data}){
     }
     return 0;
   });
-  const deleteCategoryCall = async (userID) => {
-    return await fetch('https://maint.airsensa.tech/pulse/V01/deleteuser?wf_tkn=' + currentUser.token + '&userid=' + userID)
+  const deleteCategoryCall = async (categoryID) => {
+    return await fetch('http://localhost:8080/api/v1/category/' + categoryID, {
+      method: "DELETE"
+    })
   }
  
-  const deleteCategory = (userID) => {
+  const deleteCategory = (categoryID) => {
     const array = [...categoryList]
     for (let i = 0; i < array.length; i++) {
-        if (userID === array[i].UserID) {
-            let promise = deleteCategoryCall(userID)
+        if (categoryID === array[i].categoryID) {
+            let promise = deleteCategoryCall(categoryID)
             promise.then((response) => {
               if (!response.ok) {
                 throw Error("Internal Server Error");
               }
               array.splice(i, 1)
         
-              setUsers(array)
+              setCategory(array)
               return
             })
             .catch((error)=>{
-              alert.show('Internal Server Error')
+              //alert.show('Internal Server Error')
               return
             })
         }    
@@ -64,7 +67,7 @@ function CategoryTable({data}){
   }
   return (
   <Table
-    headers={["Category ID", "Name","Action"]}
+    headers={["Category ID", "Name", "Action"]}
     rows= {categoryList.map((service)=> (
       [
         service.categoryID,
