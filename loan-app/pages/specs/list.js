@@ -37,17 +37,17 @@ function SpecsTable({data}){
     }
     return 0;
   });
-  const deleteSpecsCall = async (equipmentID) => {
-    return await fetch('http://localhost:8080/api/v1/equipment/' + equipmentID, {
-      method: "DELETE"
+  const deleteSpecsCall = async (specsID) => {
+    return await fetch('http://localhost:8080/api/v1/specs/' + specsID, {
+      method: "DELETE",
     })
   }
  
-  const specsEquipment = (equipmentID) => {
-    const array = [...equipmentList]
+  const deleteSpecs = (specsID) => {
+    const array = [...specsList]
     for (let i = 0; i < array.length; i++) {
-        if (equipmentID === array[i].equipmentID) {
-            let promise = deleteSpecsCall(equipmentID)
+        if (specsID === array[i].specsID) {
+            let promise = deleteSpecsCall(specsID)
             promise.then((response) => {
               if (!response.ok) {
                 throw Error("Internal Server Error");
