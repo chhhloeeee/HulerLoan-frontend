@@ -45,7 +45,7 @@ export default function AddReturn() {
               Return Date<span className={styles.required}>*</span>
             </span>
           </label>
-          <DatePicker
+          <DatePicker id={styles.date}
             selected={startDate}
             name="return"
             className={styles.inputField}

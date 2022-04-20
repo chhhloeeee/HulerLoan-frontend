@@ -48,7 +48,7 @@ export default function AddLoan() {
               From<span className={styles.required}>*</span>
             </span>
           </label>
-          <DatePicker
+          <DatePicker id={styles.date}
             selected={startDate}
             name="from"
             className={styles.inputField}
@@ -60,7 +60,7 @@ export default function AddLoan() {
               To<span className={styles.required}>*</span>
             </span>
           </label>
-          <DatePicker
+          <DatePicker id={styles.date}
             selected={endDate}
             name="from"
             className={styles.inputField}

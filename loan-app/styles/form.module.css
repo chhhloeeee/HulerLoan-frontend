@@ -123,3 +123,8 @@
     width: 20px;
   }
   
+  #date{
+    position: relative;
+    margin-left: 250px;
+    top: -30px;
+  }
