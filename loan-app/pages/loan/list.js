@@ -29,23 +29,23 @@ function LoanTable({data}){
   const [loan, setLoan] = useState(data)
  
   let loanList = loan.sort((a, b) => {
-    if (a.loanID.toLowerCase() < b.loanID.toLowerCase()) {
+    if (a.loanID < b.loanID) {
       return -1;
     }
-    if (a.loanID.toLowerCase() > b.loanID.toLowerCase()) {
+    if (a.loanID > b.loanID) {
       return 1;
     }
     return 0;
   });
-  const deleteUserCall = async (userID) => {
+  const deleteLoanCall = async (userID) => {
     return await fetch('https://maint.airsensa.tech/pulse/V01/deleteuser?wf_tkn=' + currentUser.token + '&userid=' + userID)
   }
  
-  const deleteUser = (userID) => {
+  const deleteLoan = (userID) => {
     const array = [...userList]
     for (let i = 0; i < array.length; i++) {
         if (userID === array[i].UserID) {
-            let promise = deleteUserCall(userID)
+            let promise = deleteLoanCall(userID)
             promise.then((response) => {
               if (!response.ok) {
                 throw Error("Internal Server Error");
@@ -76,7 +76,7 @@ function LoanTable({data}){
         service.daysElapsed,
         service.active,
         <div className='parent inline-flex-parent'>
-        <div className='child'><BinIcon onClick={() => deleteUser(service.UserID)}/></div>
+        <div className='child'><BinIcon onClick={() => deleteLoan(service.loanID)}/></div>
       </div> 
       ]
     ))}

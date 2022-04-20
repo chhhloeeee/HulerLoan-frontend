@@ -36,6 +36,23 @@ export function DropdownMenu() {
       <Menu as="div" className={styles.dropdown}>
         <div>
           <Menu.Button className={styles.dropBttn}>
+            Specs
+          </Menu.Button>
+        </div>
+          <Menu.Items>
+            <div className={styles.dropdownContent}>
+              <Menu.Item>
+              <MyLink href="/specs/list">View</MyLink>
+              </Menu.Item>
+              <Menu.Item>
+              <MyLink href="/specs/add">Add</MyLink>
+              </Menu.Item>
+            </div>
+          </Menu.Items>
+      </Menu>
+      <Menu as="div" className={styles.dropdown}>
+        <div>
+          <Menu.Button className={styles.dropBttn}>
             Equipment
           </Menu.Button>
         </div>

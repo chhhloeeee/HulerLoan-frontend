@@ -7,14 +7,14 @@ import {BinIcon} from "../../components/icons"
 import {useState} from 'react';
 
 
-function ListCategory() {
+function ListSpecs() {
     return (
       <div className={styles.app}>
-      <h1 className={styles.title}>Category</h1>
+      <h1 className={styles.title}>Specs</h1>
       <APILoader
-            url={'http://localhost:8080/api/v1/category'}
+            url={'http://localhost:8080/api/v1/specs'}
             Component={
-              CategoryTable
+              SpecsTable
             }
           />
       <Button text="Cancel" href="/home" />
@@ -22,36 +22,39 @@ function ListCategory() {
     )
   }
 
-  //USerTable function displays all users in a table
-function CategoryTable({data}){
+  //USerTable function displays all specs in a table
+function SpecsTable({data}){
   //const alert = useAlert() 
-  const [category, setCategory] = useState(data)
+  const [specs, setSpecs] = useState(data)
+  console.log(data)
  
-  let categoryList = category.sort((a, b) => {
-    if (a.categoryID < b.categoryID) {
+  let specsList = specs.sort((a, b) => {
+    if (a.specsID < b.specsID) {
       return -1;
     }
-    if (a.categoryID > b.categoryID) {
+    if (a.specsID > b.specsID) {
       return 1;
     }
     return 0;
   });
-  const deleteCategoryCall = async (userID) => {
-    return await fetch('https://maint.airsensa.tech/pulse/V01/deleteuser?wf_tkn=' + currentUser.token + '&userid=' + userID)
+  const deleteSpecsCall = async (equipmentID) => {
+    return await fetch('http://localhost:8080/api/v1/equipment/' + equipmentID, {
+      method: "DELETE"
+    })
   }
  
-  const deleteCategory = (userID) => {
-    const array = [...categoryList]
+  const specsEquipment = (equipmentID) => {
+    const array = [...equipmentList]
     for (let i = 0; i < array.length; i++) {
-        if (userID === array[i].UserID) {
-            let promise = deleteCategoryCall(userID)
+        if (equipmentID === array[i].equipmentID) {
+            let promise = deleteSpecsCall(equipmentID)
             promise.then((response) => {
               if (!response.ok) {
                 throw Error("Internal Server Error");
               }
               array.splice(i, 1)
         
-              setUsers(array)
+              setSpecs(array)
               return
             })
             .catch((error)=>{
@@ -64,13 +67,13 @@ function CategoryTable({data}){
   }
   return (
   <Table
-    headers={["Category ID", "Name","Action"]}
-    rows= {categoryList.map((service)=> (
+    headers={["Specs ID", "Description", "Action"]}
+    rows= {specsList.map((service)=> (
       [
-        service.categoryID,
-        service.name,
+        service.specsID,
+        service.description,
         <div className='parent inline-flex-parent'>
-        <div className='child'><BinIcon onClick={() => deleteCategory(service.categoryID)}/></div>
+        <div className='child'><BinIcon onClick={() => deleteSpecs(service.specsID)}/></div>
       </div> 
       ]
     ))}
@@ -78,4 +81,4 @@ function CategoryTable({data}){
   )
 }
 
-export default ListCategory;
+export default ListSpecs;
