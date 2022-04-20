@@ -10,10 +10,6 @@ export const APILoader = ({url, Component, reloadWith}) => {
       fetch(url)
       .then((response) => response.json())
       .then((json) => {
-          console.log(json.status);
-        if (json.status !== "ok") {
-          throw Error("Internal Server Error")
-        }
         setResponse(json)
       })
       .catch((err) => setError(err))
@@ -33,6 +29,6 @@ export const APILoader = ({url, Component, reloadWith}) => {
     )
   }
   return (
-      <Component data={response.data}/>
+      <Component data={response}/>
   )
 }

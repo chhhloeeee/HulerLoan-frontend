@@ -1,4 +1,6 @@
+import { faSprayCanSparkles } from '@fortawesome/free-solid-svg-icons';
 import {useState, useEffect} from 'react';
+import styles from './table.module.css';
 
 function Table({headers, rows, onRefresh}) {
     const [pageNumber, setPageNumber] = useState(1)
@@ -38,31 +40,31 @@ function Table({headers, rows, onRefresh}) {
       )
     }
     return (
-    <div className='pagination'>
-       <table>
-         <thead>
-           <tr>
-             {headers.map(header => (
-               <th>{header}</th>
-             ))}
-           </tr>
-         </thead>
-         <tbody>
-         {rows.slice((pageNumber-1)*10, (pageNumber*10)).map((row) => (
-           <tr className="latestTable">
-             {row.map(cell => (
-              <td >{cell} </td>
-             ))}
-           </tr>
-         ))}
-         </tbody>
-      </table>
-      <Pagination listLength={rows.length} onClick={setPageNumber} pageNumber={pageNumber}/>
-      <div className='parent inline-flex-parent'>
-        <input className='child' type="checkbox" checked={autoScroll} onChange={setScroll}/>
-        <label className='child' style={{color: "black"}}>Auto scroll</label>
+      <div className={styles.pagination}>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              {headers.map(header => (
+                <th>{header}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+          {rows.slice((pageNumber-1)*10, (pageNumber*10)).map((row) => (
+            <tr className={styles.latestTable}>
+              {row.map(cell => (
+                <td >{cell} </td>
+              ))}
+            </tr>
+          ))}
+          </tbody>
+        </table>
+        <Pagination listLength={rows.length} onClick={setPageNumber} pageNumber={pageNumber}/>
+        <div className='parent inline-flex-parent'>
+          <input className='child' type="checkbox" checked={autoScroll} onChange={setScroll}/>
+          <label className='child' style={{color: "black", fontSize: '20px'}}>  Auto scroll</label>
+        </div>
       </div>
-    </div>
     )
 }
 
@@ -72,7 +74,7 @@ export const Pagination = ({pageNumber, listLength, onClick}) => {
       if (noOfPages <10) {
         for (let i = 1; i <= (noOfPages); i++){
           if (i===pageNumber) {
-            pageNumbers.push(<span style={{backgroundColor:"grey"}} onClick={() => onClick(i)}>{i}</span>)
+            pageNumbers.push(<span style={{backgroundColor:"grey", fontSize: '15px'}} onClick={() => onClick(i)}>{i}</span>)
           } else{
             pageNumbers.push(<span onClick={() => onClick(i)}>{i}</span>)
           }
