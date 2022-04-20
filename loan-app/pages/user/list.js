@@ -26,24 +26,27 @@ function ListUsers() {
 function UsersTable({data}){
   //const alert = useAlert() 
   const [users, setUsers] = useState(data)
+  console.log(data)
  
   let userList = users.sort((a, b) => {
-    if (a.name.toLowerCase() < b.name.toLowerCase()) {
+    if (a.userID < b.userID) {
       return -1;
     }
-    if (a.name.toLowerCase() > b.name.toLowerCase()) {
+    if (a.userID > b.userID) {
       return 1;
     }
     return 0;
   });
   const deleteUserCall = async (userID) => {
-    return await fetch('https://maint.airsensa.tech/pulse/V01/deleteuser?wf_tkn=' + currentUser.token + '&userid=' + userID)
+    return await fetch('http://localhost:8080/api/v1/users/' + userID, {
+      method: "DELETE"
+    })
   }
  
   const deleteUser = (userID) => {
     const array = [...userList]
     for (let i = 0; i < array.length; i++) {
-        if (userID === array[i].UserID) {
+        if (userID === array[i].userID) {
             let promise = deleteUserCall(userID)
             promise.then((response) => {
               if (!response.ok) {
@@ -55,7 +58,7 @@ function UsersTable({data}){
               return
             })
             .catch((error)=>{
-              alert.show('Internal Server Error')
+             // alert.show('Internal Server Error')
               return
             })
         }    
@@ -67,12 +70,12 @@ function UsersTable({data}){
     headers={["User ID", "Name", "Admin?", "Email", "Action"]}
     rows= {userList.map((service)=> (
       [
-        service.id,
+        service.userID,
         service.name,
         service.admin.toString(),
         service.email,
         <div className='parent inline-flex-parent'>
-        <div className='child'><BinIcon onClick={() => deleteUser(service.UserID)}/></div>
+        <div className='child'><BinIcon onClick={() => deleteUser(service.userID)}/></div>
       </div> 
       ]
     ))}
