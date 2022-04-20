@@ -93,9 +93,6 @@ export function DropdownMenu() {
           <Menu.Items>
             <div className={styles.dropdownContent}>
               <Menu.Item>
-              <MyLink href="/return/list">View</MyLink>
-              </Menu.Item>
-              <Menu.Item>
               <MyLink href="/return/add">Add</MyLink>
               </Menu.Item>
             </div>
