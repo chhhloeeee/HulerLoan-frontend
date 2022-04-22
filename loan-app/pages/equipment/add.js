@@ -1,61 +1,60 @@
+import React from "react";
 import Button from "../../components/button";
 import styles from "../../styles/form.module.css";
-import {useState} from 'react';
-import { APILoader } from "../../components/api";
 
 export default function AddEquipment() {
-  if (typeof window !== "undefined") {
-    window.onload = populateCat();
-  }
-  
+  const [loading, setLoading] = React.useState(true);
+  const [catValue, setCatValue] = React.useState();
+  const [categories, setCategory] = React.useState([
+    { label: "Loading...", value: "" },
+  ]);
 
-  const postNewEquipment = () => {};
-
-  function populateCat() {
-    const [category, setCategory] = useState("");
-    fetch('http://localhost:8080/api/v1/category', {
-      method: "GET",
-    })
-    .then((response) => response.json())
-    .then((response) => {
+  React.useEffect(() => {
+    let unmounted = false;
+    async function getCategories() {
+      const response = await fetch("http://localhost:8080/api/v1/category");
+      const body = await response.json();
+      console.log(body)
       console.log(response)
-      setCategory(response)
-    })
-    .catch((err) => setError(err))
-    
-  
-    var el = document.getElementById("category");
-    for (var i = 0; i < category.length; i++) {
-      el.innerHTML =
-        el.innerHTML +
-        '<option value="' +
-        category[i].categoryID +
-        '">' +
-        category[i].name +
-        "</option>";
+      if (!unmounted) {
+        setCategory(
+          body.map(({ name, categoryID }) => ({ label: name, value: categoryID }))
+        );
+        setLoading(false);
+      }
     }
-  }
+    getCategories();
+    return () => {
+      unmounted = true;
+    };
+  }, []);
+
   return (
     <div className={styles.app}>
       <h1 className={styles.title}>Add Equipment</h1>
       <div className={styles.form}>
         <form action="" method="post">
-          <label for="category">
+          <label>
             <span>
               Category <span className={styles.required}>*</span>
             </span>
             <select
+              disabled={loading}
               id="category"
-              onChange="show(this)"
-              name="category"
               className={styles.selectField}
+              value={catValue}
+              onChange={(e) => setCatValue(e.currentTarget.catValue)}
             >
-              <option value=""></option>
+              {categories.map(({ label, value }) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
             </select>
           </label>
-          <label for="specs">
+          <label>
             <span>
-              Specs <span class={styles.required}>*</span>
+              Specs <span className={styles.required}>*</span>
             </span>
             <select
               id="specs"
@@ -68,7 +67,7 @@ export default function AddEquipment() {
           </label>
           <label>
             <span> </span>
-            <input type="submit" value="Submit" onClick={postNewEquipment} />
+            <input type="submit" value="Submit" />
           </label>
         </form>
       </div>
