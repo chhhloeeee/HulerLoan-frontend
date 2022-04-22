@@ -1,7 +1,7 @@
 import styles from '../styles/Home.module.css'
 import { DropdownMenu } from '../components/menu'
 import Image from 'next/image'
-import texture from '../images/wave.jpg'
+import texture from '../images/bluefire.jpeg'
 
 export default function Home() {
   return (
