@@ -8,6 +8,10 @@ export default function AddEquipment() {
   const [categories, setCategory] = React.useState([
     { label: "Loading...", value: "" },
   ]);
+  const [specValue, setSpecValue] = React.useState();
+  const [specs, setSpecs] = React.useState([
+    {label: "Loading...", value: ""},
+  ]);
 
   React.useEffect(() => {
     let unmounted = false;
@@ -24,6 +28,24 @@ export default function AddEquipment() {
       }
     }
     getCategories();
+    return () => {
+      unmounted = true;
+    };
+  }, []);
+
+  React.useEffect(() => {
+    let unmounted = false;
+    async function getSpecs(){
+      const response = await fetch("http://localhost:8080/api/v1/specs");
+      const body = await response.json();
+      if (!unmounted) {
+        setSpecs(
+          body.map(({ description, specsID}) => ({ label: description, value: specsID}))
+        );
+        setLoading(false);
+      }
+    }
+    getSpecs();
     return () => {
       unmounted = true;
     };
@@ -57,12 +79,17 @@ export default function AddEquipment() {
               Specs <span className={styles.required}>*</span>
             </span>
             <select
+              disabled={loading}
               id="specs"
-              onChange="show(this)"
-              name="specs"
               className={styles.selectField}
+              value={specValue}
+              onChange={(e) => setSpecValue(e.currentTarget.specValue)}
             >
-              <option value=""></option>
+              {specs.map(({ label, value }) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
             </select>
           </label>
           <label>
