@@ -9,7 +9,7 @@ export default function AddLoan() {
   var end = new Date();
   var start = new Date();
   start.setDate(start.getDate());
-  end.setDate(end.getDate() + 1)
+  end.setDate(end.getDate() + 1);
   const [startDate, setStartDate] = useState(start);
   const [endDate, setEndDate] = useState(end);
   const [loading, setLoading] = useState(true);
@@ -18,21 +18,21 @@ export default function AddLoan() {
     { label: "Loading...", value: "" },
   ]);
   const [userValue, setUserValue] = useState();
-  const [user, setUser] = useState([
-    {label: "Loading...", value: ""},
-  ]);
+  const [user, setUser] = useState([{ label: "Loading...", value: "" }]);
 
-  
   useEffect(() => {
     let unmounted = false;
     async function getEquipment() {
       const response = await fetch("http://localhost:8080/api/v1/equipment");
       const body = await response.json();
-      console.log(body)
-      console.log(response)
+      console.log(body);
+      console.log(response);
       if (!unmounted) {
         setEquipment(
-          body.map(({ categoryName, specsDescription, equipmentID }) => ({ label: categoryName + " " +specsDescription, value: equipmentID }))
+          body.map(({ categoryName, specsDescription, equipmentID }) => ({
+            label: categoryName + " " + specsDescription,
+            value: equipmentID,
+          }))
         );
         setLoading(false);
       }
@@ -48,11 +48,14 @@ export default function AddLoan() {
     async function getUsers() {
       const response = await fetch("http://localhost:8080/api/v1/users");
       const body = await response.json();
-      console.log(body)
-      console.log(response)
+      console.log(body);
+      console.log(response);
       if (!unmounted) {
         setUser(
-          body.map(({ userID}) => ({ label: userID, value: userID }))
+          body.map(({ userID, name }) => ({
+            label: userID + ": " + name,
+            value: userID,
+          }))
         );
         setLoading(false);
       }
@@ -67,11 +70,11 @@ export default function AddLoan() {
       <h1 className={styles.title}>New Loan</h1>
       <div className={styles.form}>
         <form action="" method="post">
-        <label for="id">
+          <label for="id">
             <span>
               ID <span className={styles.required}>*</span>
             </span>
-        <select
+            <select
               disabled={loading}
               id="users"
               className={styles.selectField}
@@ -84,15 +87,7 @@ export default function AddLoan() {
                 </option>
               ))}
             </select>
-            </label>
-          <FormElement
-            for="name"
-            text="Name"
-            name="name"
-            className={styles.inputField}
-            required
-            readOnly={true}
-          ></FormElement>
+          </label>
           <label for="item">
             <span>
               Item <span className={styles.required}>*</span>
@@ -116,7 +111,8 @@ export default function AddLoan() {
               From<span className={styles.required}>*</span>
             </span>
           </label>
-          <DatePicker id={styles.date}
+          <DatePicker
+            id={styles.date}
             selected={startDate}
             name="from"
             className={styles.inputField}
@@ -128,7 +124,8 @@ export default function AddLoan() {
               To<span className={styles.required}>*</span>
             </span>
           </label>
-          <DatePicker id={styles.date}
+          <DatePicker
+            id={styles.date}
             selected={endDate}
             name="from"
             className={styles.inputField}
