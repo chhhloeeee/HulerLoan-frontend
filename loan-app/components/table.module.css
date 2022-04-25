@@ -3,7 +3,7 @@
   background-color: white;
   color: black;
   font-weight: bold;
-  width: 225px;
+  width: 125px;
 }
 
 .pagination {
@@ -41,7 +41,7 @@
   font-weight: bold;
 }
 
-.latestTable th{
+.latestTable th {
   color: black;
 }
 
