@@ -54,10 +54,10 @@ export default function AddLoan() {
           <FormElement
             for="name"
             text="Name"
-            type="text"
             name="name"
             className={styles.inputField}
             required
+            readOnly={true}
           ></FormElement>
           <label for="item">
             <span>
