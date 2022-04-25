@@ -62,7 +62,7 @@ export default function AddEquipment() {
             </span>
             <select
               disabled={loading}
-              id="category"
+              id="equipment"
               className={styles.selectField}
               value={catValue}
               onChange={(e) => setCatValue(e.currentTarget.catValue)}
