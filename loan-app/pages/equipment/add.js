@@ -1,19 +1,20 @@
 import React from "react";
 import Button from "../../components/button";
 import styles from "../../styles/form.module.css";
+import { useState, useEffect } from "react";
 
 export default function AddEquipment() {
-  const [loading, setLoading] = React.useState(true);
-  const [catValue, setCatValue] = React.useState();
-  const [categories, setCategory] = React.useState([
+  const [loading, setLoading] = useState(true);
+  const [catValue, setCatValue] = useState();
+  const [categories, setCategory] = useState([
     { label: "Loading...", value: "" },
   ]);
-  const [specValue, setSpecValue] = React.useState();
-  const [specs, setSpecs] = React.useState([
+  const [specValue, setSpecValue] = useState();
+  const [specs, setSpecs] = useState([
     {label: "Loading...", value: ""},
   ]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     let unmounted = false;
     async function getCategories() {
       const response = await fetch("http://localhost:8080/api/v1/category");

@@ -17,6 +17,10 @@ export default function AddLoan() {
   const [equipment, setEquipment] = useState([
     { label: "Loading...", value: "" },
   ]);
+  const [userValue, setUserValue] = useState();
+  const [user, setUser] = useState([
+    {label: "Loading...", value: ""},
+  ]);
 
   
   useEffect(() => {
@@ -38,19 +42,49 @@ export default function AddLoan() {
       unmounted = true;
     };
   }, []);
+
+  useEffect(() => {
+    let unmounted = false;
+    async function getUsers() {
+      const response = await fetch("http://localhost:8080/api/v1/users");
+      const body = await response.json();
+      console.log(body)
+      console.log(response)
+      if (!unmounted) {
+        setUser(
+          body.map(({ userID}) => ({ label: userID, value: userID }))
+        );
+        setLoading(false);
+      }
+    }
+    getUsers();
+    return () => {
+      unmounted = true;
+    };
+  }, []);
   return (
     <div className={styles.app}>
       <h1 className={styles.title}>New Loan</h1>
       <div className={styles.form}>
         <form action="" method="post">
-          <FormElement
-            for="id"
-            text="ID"
-            type="text"
-            name="id"
-            className={styles.inputField}
-            required
-          ></FormElement>
+        <label for="id">
+            <span>
+              ID <span className={styles.required}>*</span>
+            </span>
+        <select
+              disabled={loading}
+              id="users"
+              className={styles.selectField}
+              value={userValue}
+              onChange={(e) => setUserValue(e.currentTarget.userValue)}
+            >
+              {user.map(({ label, value }) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+            </label>
           <FormElement
             for="name"
             text="Name"
