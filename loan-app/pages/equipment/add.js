@@ -10,20 +10,21 @@ export default function AddEquipment() {
     { label: "Loading...", value: "" },
   ]);
   const [specValue, setSpecValue] = useState();
-  const [specs, setSpecs] = useState([
-    {label: "Loading...", value: ""},
-  ]);
+  const [specs, setSpecs] = useState([{ label: "Loading...", value: "" }]);
 
   useEffect(() => {
     let unmounted = false;
     async function getCategories() {
       const response = await fetch("http://localhost:8080/api/v1/category");
       const body = await response.json();
-      console.log(body)
-      console.log(response)
+      console.log(body);
+      console.log(response);
       if (!unmounted) {
         setCategory(
-          body.map(({ name, categoryID }) => ({ label: name, value: categoryID }))
+          body.map(({ name, categoryID }) => ({
+            label: name,
+            value: categoryID,
+          }))
         );
         setLoading(false);
       }
@@ -34,14 +35,17 @@ export default function AddEquipment() {
     };
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     let unmounted = false;
-    async function getSpecs(){
+    async function getSpecs() {
       const response = await fetch("http://localhost:8080/api/v1/specs");
       const body = await response.json();
       if (!unmounted) {
         setSpecs(
-          body.map(({ description, specsID}) => ({ label: description, value: specsID}))
+          body.map(({ description, specsID }) => ({
+            label: description,
+            value: specsID,
+          }))
         );
         setLoading(false);
       }
