@@ -1,7 +1,15 @@
 import React from "react";
-import styles from '../styles/form.module.css'
+import styles from "../styles/form.module.css";
 
-const FormElement = ({ text, required, type, name, className, readOnly }) => {
+const FormElement = ({
+  text,
+  required,
+  type,
+  name,
+  className,
+  readOnly,
+  onChange,
+}) => {
   return (
     <label for={name}>
       <span>
@@ -13,6 +21,7 @@ const FormElement = ({ text, required, type, name, className, readOnly }) => {
         name={name}
         required={required}
         readOnly={readOnly}
+        onChange={onChange}
       />
     </label>
   );
