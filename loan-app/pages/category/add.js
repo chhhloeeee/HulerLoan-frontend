@@ -16,14 +16,6 @@ export default function AddCategory() {
     setCategory({ ...category, [event.target.name]: value });
   };
 
-  // const reset = (e) => {
-  //   e.preventDefault();
-  //   setCategory({
-  //     categoryID: "",
-  //     name: "",
-  //   });
-  // };
-
   const postCategory = async (e) => {
     console.log(category);
     e.preventDefault();
