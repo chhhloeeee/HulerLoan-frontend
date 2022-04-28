@@ -17,7 +17,6 @@ export default function AddCategory() {
   };
 
   const postCategory = async (e) => {
-    console.log(category);
     e.preventDefault();
     const response = await fetch("http://localhost:8080/api/v1/category", {
       method: "POST",
@@ -27,7 +26,6 @@ export default function AddCategory() {
       body: JSON.stringify(category),
     });
     if (!response.ok) {
-      console.log(response);
       throw new Error("Internal Server Error");
     }
     router.push("/category/list");
