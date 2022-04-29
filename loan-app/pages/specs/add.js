@@ -9,9 +9,9 @@ export default function AddCategory() {
   const router = useRouter();
   const [specs, setSpecs] = useState({
     specsID: "",
+    categoryID: "",
     description: "",
   });
-  const [catValue, setCatValue] = useState();
   const [category, setCategory] = useState([
     { label: "Loading...", value: "" },
   ]);
@@ -71,10 +71,10 @@ export default function AddCategory() {
             <select
               disabled={loading}
               id="category"
-              name="category"
+              name="categoryID"
               className={styles.selectField}
-              value={catValue}
-              onChange={(e) => setCatValue(e.currentTarget.catValue)}
+              value={category.categoryID}
+              onChange={(e) => handleChange(e)}
             >
               {category.map(({ label, value }) => (
                 <option key={value} value={value}>
