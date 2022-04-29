@@ -76,6 +76,9 @@ export default function AddCategory() {
               value={category.categoryID}
               onChange={(e) => handleChange(e)}
             >
+              <option hidden selected>
+                Select...
+              </option>
               {category.map(({ label, value }) => (
                 <option key={value} value={value}>
                   {label}
