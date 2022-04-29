@@ -16,7 +16,7 @@ export default function AddReturn() {
   useEffect(() => {
     let unmounted = false;
     async function getUsers() {
-      const response = await fetch("http://localhost:8080/api/v1/users");
+      const response = await fetch("http://localhost:8080/api/v1/loan");
       const body = await response.json();
       console.log(body);
       console.log(response);
@@ -51,6 +51,9 @@ export default function AddReturn() {
               value={userValue}
               onChange={(e) => setUserValue(e.currentTarget.userValue)}
             >
+              <option hidden selected>
+                Select...
+              </option>
               {user.map(({ label, value }) => (
                 <option key={value} value={value}>
                   {label}

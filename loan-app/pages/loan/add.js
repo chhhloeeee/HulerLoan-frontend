@@ -81,6 +81,9 @@ export default function AddLoan() {
               value={userValue}
               onChange={(e) => setUserValue(e.currentTarget.userValue)}
             >
+              <option hidden selected>
+                Select...
+              </option>
               {user.map(({ label, value }) => (
                 <option key={value} value={value}>
                   {label}
@@ -99,6 +102,9 @@ export default function AddLoan() {
               value={equipValue}
               onChange={(e) => setEquipValue(e.currentTarget.equipValue)}
             >
+              <option hidden selected>
+                Select...
+              </option>
               {equipment.map(({ label, value }) => (
                 <option key={value} value={value}>
                   {label}
