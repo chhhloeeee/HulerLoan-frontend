@@ -26,7 +26,7 @@ export default function AddCategory() {
       body: JSON.stringify(category),
     });
     if (!response.ok) {
-      throw new Error("Internal Server Error");
+      alert("Something went wrong");
     }
     router.push("/category/list");
   };

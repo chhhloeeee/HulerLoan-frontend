@@ -2,7 +2,6 @@ import Button from "../../components/button";
 import styles from "../../styles/form.module.css";
 import Table from "../../components/table";
 import { APILoader } from "../../components/api";
-import { useAlert } from "react-alert";
 import { BinIcon } from "../../components/icons";
 import { useState } from "react";
 
@@ -21,8 +20,6 @@ function ListLoan() {
 
 //USerTable function displays all equipment in a table
 function LoanTable({ data }) {
-  console.log(data);
-  //const alert = useAlert()
   const [loan, setLoan] = useState(data);
   console.log(data);
 
@@ -49,7 +46,7 @@ function LoanTable({ data }) {
         promise
           .then((response) => {
             if (!response.ok) {
-              throw Error("Internal Server Error");
+              alert("Something went wrong");
             }
             array.splice(i, 1);
 
@@ -57,7 +54,7 @@ function LoanTable({ data }) {
             return;
           })
           .catch((error) => {
-            alert.show("Internal Server Error");
+            alert("Internal Server Error");
             return;
           });
       }

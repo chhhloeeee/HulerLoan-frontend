@@ -54,7 +54,7 @@ export default function AddCategory() {
     });
     console.log(response);
     if (!response.ok) {
-      throw new Error("Internal Server Error");
+      alert("Something went wrong");
     }
     router.push("/specs/list");
   };

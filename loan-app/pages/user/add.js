@@ -30,7 +30,7 @@ export default function AddUser() {
     });
     console.log(response);
     if (!response.ok) {
-      throw new Error("Internal Server Error");
+      alert("Something went wrong");
     }
     router.push("/user/list");
   };

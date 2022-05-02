@@ -80,7 +80,7 @@ export default function AddEquipment() {
     });
     console.log(response);
     if (!response.ok) {
-      throw new Error("Internal Server Error");
+      alert("Something went wrong");
     }
     router.push("/equipment/list");
   };

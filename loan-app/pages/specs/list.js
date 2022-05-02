@@ -2,7 +2,6 @@ import Button from "../../components/button";
 import styles from "../../styles/form.module.css";
 import Table from "../../components/table";
 import { APILoader } from "../../components/api";
-import { useAlert } from "react-alert";
 import { BinIcon } from "../../components/icons";
 import { useState } from "react";
 
@@ -21,7 +20,6 @@ function ListSpecs() {
 
 //USerTable function displays all specs in a table
 function SpecsTable({ data }) {
-  //const alert = useAlert()
   const [specs, setSpecs] = useState(data);
   console.log(data);
 
@@ -48,7 +46,7 @@ function SpecsTable({ data }) {
         promise
           .then((response) => {
             if (!response.ok) {
-              throw Error("Internal Server Error");
+              alert("Something went wrong");
             }
             array.splice(i, 1);
 
@@ -56,7 +54,7 @@ function SpecsTable({ data }) {
             return;
           })
           .catch((error) => {
-            alert.show("Internal Server Error");
+            alert("Internal Server Error");
             return;
           });
       }
