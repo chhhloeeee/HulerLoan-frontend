@@ -1,32 +1,36 @@
 import Button from "../../components/button";
-import FormElement from "../../components/form";
 import styles from "../../styles/form.module.css";
 import DatePicker from "react-datepicker";
 import { useState, useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 
+import FormElement from "../../components/form";
+
+import { useRouter } from "next/router";
+
 export default function AddLoan() {
-  var end = new Date();
-  var start = new Date();
-  start.setDate(start.getDate());
-  end.setDate(end.getDate() + 1);
-  const [startDate, setStartDate] = useState(start);
-  const [endDate, setEndDate] = useState(end);
   const [loading, setLoading] = useState(true);
-  const [equipValue, setEquipValue] = useState();
   const [equipment, setEquipment] = useState([
     { label: "Loading...", value: "" },
   ]);
-  const [userValue, setUserValue] = useState();
   const [user, setUser] = useState([{ label: "Loading...", value: "" }]);
+
+  const router = useRouter();
+  const [loan, setLoan] = useState({
+    loanID: "",
+    userID: "",
+    equipmentID: "",
+    active: true,
+    days_elapsed: "",
+    issue_date: "",
+    return_date: "",
+  });
 
   useEffect(() => {
     let unmounted = false;
     async function getEquipment() {
       const response = await fetch("http://localhost:8080/api/v1/equipment");
       const body = await response.json();
-      console.log(body);
-      console.log(response);
       if (!unmounted) {
         setEquipment(
           body.map(({ categoryName, specsDescription, equipmentID }) => ({
@@ -43,13 +47,33 @@ export default function AddLoan() {
     };
   }, []);
 
+  const handleChange = (event) => {
+    const value = event.target.value;
+    console.log(value);
+    setLoan({ ...loan, [event.target.name]: value });
+  };
+
+  const postLoan = async (e) => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:8080/api/v1/loan", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loan),
+    });
+    console.log(response);
+    if (!response.ok) {
+      throw new Error("Internal Server Error");
+    }
+    router.push("/loan/list");
+  };
+
   useEffect(() => {
     let unmounted = false;
     async function getUsers() {
       const response = await fetch("http://localhost:8080/api/v1/users");
       const body = await response.json();
-      console.log(body);
-      console.log(response);
       if (!unmounted) {
         setUser(
           body.map(({ userID, name }) => ({
@@ -65,21 +89,72 @@ export default function AddLoan() {
       unmounted = true;
     };
   }, []);
+
+  function validatedate(inputText) {
+    var dateformat =
+      /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+    // Match the date format through regular expression
+    if (inputText.value.match(dateformat)) {
+      document.form.issue_date.focus();
+      document.form.return_date.focus();
+      //Test which seperator is used '/' or '-'
+      var opera1 = inputText.value.split("/");
+      var opera2 = inputText.value.split("-");
+      var lopera1 = opera1.length;
+      var lopera2 = opera2.length;
+      // Extract the string into month, date and year
+      if (lopera1 > 1) {
+        var pdate = inputText.value.split("/");
+      } else if (lopera2 > 1) {
+        var pdate = inputText.value.split("-");
+      }
+      var dd = parseInt(pdate[0]);
+      var mm = parseInt(pdate[1]);
+      var yy = parseInt(pdate[2]);
+      // Create list of days of a month [assume there is no leap year by default]
+      var ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+      if (mm == 1 || mm > 2) {
+        if (dd > ListofDays[mm - 1]) {
+          alert("Invalid date format!");
+          return false;
+        }
+      }
+      if (mm == 2) {
+        var lyear = false;
+        if ((!(yy % 4) && yy % 100) || !(yy % 400)) {
+          lyear = true;
+        }
+        if (lyear == false && dd >= 29) {
+          alert("Invalid date format!");
+          return false;
+        }
+        if (lyear == true && dd > 29) {
+          alert("Invalid date format!");
+          return false;
+        }
+      }
+    } else {
+      alert("Invalid date format!");
+      document.form.issue_date.focus();
+      document.form.return_date.focus();
+      return false;
+    }
+  }
   return (
     <div className={styles.app}>
       <h1 className={styles.title}>New Loan</h1>
       <div className={styles.form}>
-        <form action="" method="post">
-          <label for="id">
+        <form action="" method="post" name="form">
+          <label>
             <span>
               ID <span className={styles.required}>*</span>
             </span>
             <select
               disabled={loading}
-              id="users"
+              name="userID"
               className={styles.selectField}
-              value={userValue}
-              onChange={(e) => setUserValue(e.currentTarget.userValue)}
+              value={loan.userID}
+              onChange={(e) => handleChange(e)}
             >
               <option hidden selected>
                 Select...
@@ -91,16 +166,16 @@ export default function AddLoan() {
               ))}
             </select>
           </label>
-          <label for="item">
+          <label>
             <span>
               Item <span className={styles.required}>*</span>
             </span>
             <select
               disabled={loading}
-              id="loan"
+              name="equipmentID"
               className={styles.selectField}
-              value={equipValue}
-              onChange={(e) => setEquipValue(e.currentTarget.equipValue)}
+              value={loan.equipmentID}
+              onChange={(e) => handleChange(e)}
             >
               <option hidden selected>
                 Select...
@@ -112,35 +187,29 @@ export default function AddLoan() {
               ))}
             </select>
           </label>
-          <label for="from">
-            <span>
-              From<span className={styles.required}>*</span>
-            </span>
-          </label>
-          <DatePicker
-            id={styles.date}
-            selected={startDate}
-            name="from"
+          <FormElement
+            text="From"
+            type="text"
+            name="issue_date"
             className={styles.inputField}
-            onChange={(date) => setStartDate(date)}
-            dateFormat="dd/MM/yyyy"
-          />
-          <label for="to">
-            <span>
-              To<span className={styles.required}>*</span>
-            </span>
-          </label>
-          <DatePicker
-            id={styles.date}
-            selected={endDate}
-            name="from"
+            required
+            value={loan.issue_date}
+            placeholder={loan.issue_date}
+            onChange={(e) => handleChange(e)}
+          ></FormElement>
+          <FormElement
+            text="To"
+            type="text"
+            name="return_date"
             className={styles.inputField}
-            onChange={(date) => setEndDate(date)}
-            dateFormat="dd/MM/yyyy"
-          />
+            required
+            value={loan.return_date}
+            placeholder={loan.return_date}
+            onChange={(e) => handleChange(e)}
+          ></FormElement>
           <label>
             <span> </span>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Submit" onClick={postLoan} />
           </label>
         </form>
       </div>
