@@ -9,6 +9,7 @@ const FormElement = ({
   className,
   readOnly,
   onChange,
+  placeholder,
 }) => {
   return (
     <label for={name}>
@@ -22,6 +23,7 @@ const FormElement = ({
         required={required}
         readOnly={readOnly}
         onChange={onChange}
+        placeholder={placeholder}
       />
     </label>
   );

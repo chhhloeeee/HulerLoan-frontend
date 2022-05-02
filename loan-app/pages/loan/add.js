@@ -9,6 +9,10 @@ import FormElement from "../../components/form";
 import { useRouter } from "next/router";
 
 export default function AddLoan() {
+  var startDate = new Date().toLocaleDateString();
+  var end = new Date();
+  end.setDate(end.getDate() + 1);
+  var endDate = end.toLocaleDateString();
   const [loading, setLoading] = useState(true);
   const [equipment, setEquipment] = useState([
     { label: "Loading...", value: "" },
@@ -26,6 +30,8 @@ export default function AddLoan() {
     return_date: "",
   });
 
+  console.log(loan.issue_date, "issue date");
+  console.log(loan.return_date, "return date");
   useEffect(() => {
     let unmounted = false;
     async function getEquipment() {
@@ -194,7 +200,7 @@ export default function AddLoan() {
             className={styles.inputField}
             required
             value={loan.issue_date}
-            placeholder={loan.issue_date}
+            placeholder={startDate}
             onChange={(e) => handleChange(e)}
           ></FormElement>
           <FormElement
@@ -204,7 +210,7 @@ export default function AddLoan() {
             className={styles.inputField}
             required
             value={loan.return_date}
-            placeholder={loan.return_date}
+            placeholder={endDate}
             onChange={(e) => handleChange(e)}
           ></FormElement>
           <label>
