@@ -39,6 +39,7 @@ function LoanTable({ data }) {
   };
 
   const deleteLoan = (loanID) => {
+    console.log(loanID);
     const array = [...loanList];
     for (let i = 0; i < array.length; i++) {
       if (loanID === array[i].loanID) {
@@ -69,7 +70,6 @@ function LoanTable({ data }) {
         "Equipment ID",
         "Issue Date",
         "Return Date",
-        "Days Elapsed",
         "Active?",
         "Actions",
       ]}
@@ -77,9 +77,8 @@ function LoanTable({ data }) {
         service.loanID,
         service.userID,
         service.equipmentID,
-        service.issueDate,
-        service.returnDate,
-        service.daysElapsed,
+        service.issuedate,
+        service.returndate,
         service.active.toString(),
         <div className="parent inline-flex-parent">
           <div className="child">

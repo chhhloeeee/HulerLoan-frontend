@@ -1,6 +1,5 @@
 import Button from "../../components/button";
 import styles from "../../styles/form.module.css";
-import DatePicker from "react-datepicker";
 import { useState, useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -25,13 +24,14 @@ export default function AddLoan() {
     userID: "",
     equipmentID: "",
     active: true,
-    days_elapsed: "",
-    issue_date: "",
-    return_date: "",
+    dayselapsed: "0",
+    issuedate: startDate,
+    returndate: endDate,
   });
 
-  console.log(loan.issue_date, "issue date");
-  console.log(loan.return_date, "return date");
+  console.log(loan.issuedate, "issue date");
+  console.log(loan.issuedate.length, "ISSUE TYPE");
+  console.log(loan.returndate, "return date");
   useEffect(() => {
     let unmounted = false;
     async function getEquipment() {
@@ -55,7 +55,8 @@ export default function AddLoan() {
 
   const handleChange = (event) => {
     const value = event.target.value;
-    console.log(value);
+    console.log(typeof value);
+    console.log(value, "VALUE");
     setLoan({ ...loan, [event.target.name]: value });
   };
 
@@ -72,6 +73,7 @@ export default function AddLoan() {
     if (!response.ok) {
       alert("Something went wrong");
     }
+    alert("Loan created");
     router.push("/loan/list");
   };
 
@@ -96,56 +98,6 @@ export default function AddLoan() {
     };
   }, []);
 
-  function validatedate(inputText) {
-    var dateformat =
-      /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
-    // Match the date format through regular expression
-    if (inputText.value.match(dateformat)) {
-      document.form.issue_date.focus();
-      document.form.return_date.focus();
-      //Test which seperator is used '/' or '-'
-      var opera1 = inputText.value.split("/");
-      var opera2 = inputText.value.split("-");
-      var lopera1 = opera1.length;
-      var lopera2 = opera2.length;
-      // Extract the string into month, date and year
-      if (lopera1 > 1) {
-        var pdate = inputText.value.split("/");
-      } else if (lopera2 > 1) {
-        var pdate = inputText.value.split("-");
-      }
-      var dd = parseInt(pdate[0]);
-      var mm = parseInt(pdate[1]);
-      var yy = parseInt(pdate[2]);
-      // Create list of days of a month [assume there is no leap year by default]
-      var ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-      if (mm == 1 || mm > 2) {
-        if (dd > ListofDays[mm - 1]) {
-          alert("Invalid date format!");
-          return false;
-        }
-      }
-      if (mm == 2) {
-        var lyear = false;
-        if ((!(yy % 4) && yy % 100) || !(yy % 400)) {
-          lyear = true;
-        }
-        if (lyear == false && dd >= 29) {
-          alert("Invalid date format!");
-          return false;
-        }
-        if (lyear == true && dd > 29) {
-          alert("Invalid date format!");
-          return false;
-        }
-      }
-    } else {
-      alert("Invalid date format!");
-      document.form.issue_date.focus();
-      document.form.return_date.focus();
-      return false;
-    }
-  }
   return (
     <div className={styles.app}>
       <h1 className={styles.title}>New Loan</h1>
@@ -195,22 +147,20 @@ export default function AddLoan() {
           </label>
           <FormElement
             text="From"
-            type="text"
-            name="issue_date"
+            type="date"
+            name="issuedate"
             className={styles.inputField}
             required
-            value={loan.issue_date}
-            placeholder={startDate}
+            value={loan.issuedate}
             onChange={(e) => handleChange(e)}
           ></FormElement>
           <FormElement
             text="To"
-            type="text"
-            name="return_date"
+            type="date"
+            name="returndate"
             className={styles.inputField}
             required
-            value={loan.return_date}
-            placeholder={endDate}
+            value={loan.returndate}
             onChange={(e) => handleChange(e)}
           ></FormElement>
           <label>

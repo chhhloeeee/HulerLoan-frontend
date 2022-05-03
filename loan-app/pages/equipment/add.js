@@ -82,6 +82,7 @@ export default function AddEquipment() {
     if (!response.ok) {
       alert("Something went wrong");
     }
+    alert("Equipment added");
     router.push("/equipment/list");
   };
   return (

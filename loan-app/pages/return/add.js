@@ -84,14 +84,6 @@ export default function AddReturn() {
             onChange={(date) => setStartDate(date)}
             dateFormat="dd/MM/yyyy"
           />
-          <FormElement
-            for="days"
-            text="Days Elapsed"
-            type="text"
-            name="days"
-            className={styles.inputField}
-            required
-          ></FormElement>
           <label>
             <span> </span>
             <input type="submit" value="Submit" />

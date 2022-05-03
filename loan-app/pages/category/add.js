@@ -28,6 +28,7 @@ export default function AddCategory() {
     if (!response.ok) {
       alert("Something went wrong");
     }
+    alert("Category added");
     router.push("/category/list");
   };
 

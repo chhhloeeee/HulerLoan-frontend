@@ -32,6 +32,7 @@ export default function AddUser() {
     if (!response.ok) {
       alert("Something went wrong");
     }
+    alert("User added");
     router.push("/user/list");
   };
 
