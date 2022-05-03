@@ -42,6 +42,7 @@ export default function AddLoan() {
             value: equipmentID,
           }))
         );
+        console.log(ava);
         setLoading(false);
       }
     }
