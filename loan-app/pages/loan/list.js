@@ -65,6 +65,7 @@ function LoanTable({ data }) {
     }
     return;
   };
+
   return (
     <Table
       headers={[
@@ -73,7 +74,6 @@ function LoanTable({ data }) {
         "Equipment ID",
         "Issue Date",
         "Return Date",
-        "Active?",
         "Actions",
       ]}
       rows={loanList.map((service) => [
@@ -82,13 +82,9 @@ function LoanTable({ data }) {
         service.equipmentID,
         service.issuedate,
         service.returndate,
-        service.active.toString(),
         <div className="parent inline-flex-parent">
           <div className="child">
-            <BinIcon onClick={() => deleteLoan(service.loanID)} />
-          </div>
-          <div className="child">
-            <ReturnIcon loanID={service.loanID} />
+            <ReturnIcon onClick={() => deleteLoan(service.loanID)} />
           </div>
         </div>,
       ])}

@@ -13,7 +13,7 @@ export const BinIcon = ({ onClick }) => {
   );
 };
 
-export const ReturnIcon = ({ onClick, loanID }) => {
+export const ReturnIcon = ({ onClick, loanList }) => {
   return (
     <FontAwesomeIcon
       icon={faRightLeft}
@@ -21,7 +21,7 @@ export const ReturnIcon = ({ onClick, loanID }) => {
       alt="return"
       className="center"
       onClick={onClick}
-      loanID={loanID}
+      loanList={loanList}
     />
   );
 };
