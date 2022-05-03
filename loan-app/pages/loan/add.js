@@ -35,6 +35,7 @@ export default function AddLoan() {
     async function getEquipment() {
       const response = await fetch("http://localhost:8080/api/v1/equipment");
       const body = await response.json();
+      console.log(body[0].availability);
       if (!unmounted) {
         setEquipment(
           body.map(({ categoryName, specsDescription, equipmentID }) => ({
@@ -42,7 +43,6 @@ export default function AddLoan() {
             value: equipmentID,
           }))
         );
-        console.log(ava);
         setLoading(false);
       }
     }
