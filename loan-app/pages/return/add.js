@@ -3,64 +3,41 @@ import FormElement from "../../components/form";
 import styles from "../../styles/form.module.css";
 import DatePicker from "react-datepicker";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { APILoader } from "../../components/api";
 import "react-datepicker/dist/react-datepicker.css";
 
-export default function AddReturn() {
-  var start = new Date();
-  start.setDate(start.getDate() - 1);
-  const [startDate, setStartDate] = useState(start);
-  const [loading, setLoading] = useState(true);
-  const [userValue, setUserValue] = useState();
-  const [user, setUser] = useState([{ label: "Loading...", value: "" }]);
+export default function AddReturnLoader() {
+  // var start = new Date();
+  // start.setDate(start.getDate() - 1);
+  // const [startDate, setStartDate] = useState(start);
+  var { loanID } = useParams();
+  return (
+    <div className={styles.app}>
+      <h1 className={styles.title}>Loan</h1>
+      <APILoader
+        url={"http://localhost:8080/api/v1/loan/" + loanID}
+        Component={AddReturn}
+      />
+      <Button text="Cancel" href="/loan/list" />
+    </div>
+  );
+}
 
-  useEffect(() => {
-    let unmounted = false;
-    async function getUsers() {
-      const response = await fetch("http://localhost:8080/api/v1/loan");
-      const body = await response.json();
-      console.log(body);
-      console.log(response);
-      if (!unmounted) {
-        setUser(
-          body.map(({ userID, name }) => ({
-            label: userID + ": " + name,
-            value: userID,
-          }))
-        );
-        setLoading(false);
-      }
-    }
-    getUsers();
-    return () => {
-      unmounted = true;
-    };
-  }, []);
+function AddReturn() {
   return (
     <div className={styles.app}>
       <h1 className={styles.title}>Create Return</h1>
       <div className={styles.form}>
         <form action="" method="post">
-          <label for="id">
-            <span>
-              ID <span className={styles.required}>*</span>
-            </span>
-            <select
-              disabled={loading}
-              id="users"
-              className={styles.selectField}
-              value={userValue}
-              onChange={(e) => setUserValue(e.currentTarget.userValue)}
-            >
-              <option hidden selected>
-                Select...
-              </option>
-              {user.map(({ label, value }) => (
-                <option key={value} value={value}>
-                  {label}
-                </option>
-              ))}
-            </select>
-          </label>
+          <FormElement
+            text="Loan ID"
+            type="text"
+            name="loanID"
+            className={styles.inputField}
+            readOnly
+            value={loan.loanID}
+          ></FormElement>
           <label for="item">
             <span>
               Item <span class={styles.required}>*</span>

@@ -2,8 +2,9 @@ import Button from "../../components/button";
 import styles from "../../styles/form.module.css";
 import Table from "../../components/table";
 import { APILoader } from "../../components/api";
-import { BinIcon } from "../../components/icons";
+import { BinIcon, ReturnIcon } from "../../components/icons";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 function ListLoan() {
   return (
@@ -20,6 +21,7 @@ function ListLoan() {
 
 //USerTable function displays all equipment in a table
 function LoanTable({ data }) {
+  const router = useRouter();
   const [loan, setLoan] = useState(data);
   console.log(data);
 
@@ -39,7 +41,6 @@ function LoanTable({ data }) {
   };
 
   const deleteLoan = (loanID) => {
-    console.log(loanID);
     const array = [...loanList];
     for (let i = 0; i < array.length; i++) {
       if (loanID === array[i].loanID) {
@@ -47,6 +48,7 @@ function LoanTable({ data }) {
         promise
           .then((response) => {
             if (!response.ok) {
+              console.log(response);
               alert("Something went wrong");
             }
             array.splice(i, 1);
@@ -55,6 +57,7 @@ function LoanTable({ data }) {
             return;
           })
           .catch((error) => {
+            console.log(error);
             alert("Internal Server Error");
             return;
           });
@@ -83,6 +86,12 @@ function LoanTable({ data }) {
         <div className="parent inline-flex-parent">
           <div className="child">
             <BinIcon onClick={() => deleteLoan(service.loanID)} />
+          </div>
+          <div className="child">
+            <ReturnIcon
+              loanList={service}
+              onClick={() => router.push("/return/add/")}
+            />
           </div>
         </div>,
       ])}
