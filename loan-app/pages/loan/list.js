@@ -88,10 +88,7 @@ function LoanTable({ data }) {
             <BinIcon onClick={() => deleteLoan(service.loanID)} />
           </div>
           <div className="child">
-            <ReturnIcon
-              loanList={service}
-              onClick={() => router.push("/return/add/")}
-            />
+            <ReturnIcon loanID={service.loanID} />
           </div>
         </div>,
       ])}

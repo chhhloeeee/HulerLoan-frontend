@@ -3,33 +3,64 @@ import FormElement from "../../components/form";
 import styles from "../../styles/form.module.css";
 import DatePicker from "react-datepicker";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { APILoader } from "../../components/api";
 import "react-datepicker/dist/react-datepicker.css";
 
-export default function AddReturnLoader() {
-  // var start = new Date();
-  // start.setDate(start.getDate() - 1);
-  // const [startDate, setStartDate] = useState(start);
-  var { loanID } = useParams();
-  return (
-    <div className={styles.app}>
-      <h1 className={styles.title}>Loan</h1>
-      <APILoader
-        url={"http://localhost:8080/api/v1/loan/" + loanID}
-        Component={AddReturn}
-      />
-    </div>
-  );
-}
+export default function AddReturn({ loanList }) {
+  console.log(loanList);
 
-function AddReturn() {
   const [loan, setLoan] = useState({
-    id: "",
-    firstName: "",
-    lastName: "",
-    emailId: "",
+    loanID: "",
+    userID: "",
+    equipmentID: "",
+    active: true,
+    dayselapsed: "0",
+    issuedate: "",
+    returndate: "",
   });
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         "http://localhost:8080/api/v1/loan" + loanID,
+  //         {
+  //           method: "GET",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //         }
+  //       );
+  //       const loan = await response.json();
+  //       setUser(loan);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   if (loanID) {
+  //     fetchData();
+  //   }
+  // }, [loanID]);
+
+  const handleChange = (event) => {
+    const value = event.target.value;
+    setLoan({ ...loan, [event.target.name]: value });
+  };
+
+  const PostReturn = async (e) => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:8080/api/v1/loan" + userId, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loan),
+    });
+    if (!response.ok) {
+      alert("Something went wrong");
+    }
+    alert("Loan returned");
+    router.push("/loan/list");
+  };
 
   return (
     <div className={styles.app}>
@@ -41,32 +72,24 @@ function AddReturn() {
             type="text"
             name="loanID"
             className={styles.inputField}
-            readOnly
             value={loan.loanID}
           ></FormElement>
-          <label for="item">
-            <span>
-              Item <span class={styles.required}>*</span>
-            </span>
-            <select name="item" className={styles.selectField}>
-              <option value="General Question">General</option>
-              <option value="Advertise">Advertisement</option>
-              <option value="Partnership">Partnership</option>
-            </select>
-          </label>
-          <label for="return">
-            <span>
-              Return Date<span className={styles.required}>*</span>
-            </span>
-          </label>
-          <DatePicker
-            id={styles.date}
-            selected={startDate}
-            name="return"
+          <FormElement
+            text="Item"
+            type="text"
+            name="equipmentID"
             className={styles.inputField}
-            onChange={(date) => setStartDate(date)}
-            dateFormat="dd/MM/yyyy"
-          />
+            readOnly
+            value={loan.equipmentID}
+          ></FormElement>
+          <FormElement
+            text="Return Date"
+            type="date"
+            name="returndate"
+            className={styles.inputField}
+            readOnly
+            value={loan.returndate}
+          ></FormElement>
           <label>
             <span> </span>
             <input type="submit" value="Submit" />

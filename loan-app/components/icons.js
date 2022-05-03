@@ -13,14 +13,15 @@ export const BinIcon = ({ onClick }) => {
   );
 };
 
-export const ReturnIcon = ({ onClick }) => {
+export const ReturnIcon = ({ onClick, loanID }) => {
   return (
     <FontAwesomeIcon
       icon={faRightLeft}
       style={{ color: "black", fontSize: 30 }}
-      alt="bin"
+      alt="return"
       className="center"
       onClick={onClick}
+      loanID={loanID}
     />
   );
 };

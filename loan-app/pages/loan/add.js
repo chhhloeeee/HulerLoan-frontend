@@ -52,8 +52,6 @@ export default function AddLoan() {
 
   const handleChange = (event) => {
     const value = event.target.value;
-    console.log(typeof value);
-    console.log(value, "VALUE");
     setLoan({ ...loan, [event.target.name]: value });
   };
 
