@@ -27,6 +27,7 @@ export default function AddLoan() {
     dayselapsed: "0",
     issuedate: startDate,
     returndate: endDate,
+    equipmentAvailable: equipment.availability,
   });
 
   useEffect(() => {
@@ -57,20 +58,26 @@ export default function AddLoan() {
 
   const postLoan = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:8080/api/v1/loan", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(loan),
-    });
-    console.log(response);
-    if (!response.ok) {
-      alert("Something went wrong");
-    }
-    alert("Loan created");
-    router.push("/loan/list");
+    console.log(loan.equipmentAvailable);
+    //  setLoan(loan.equipmentAvailable - 1);
+    //  console.log(loan.equipmentAvailable);
   };
+  // const postLoan = async (e) => {
+  //   e.preventDefault();
+  //   const response = await fetch("http://localhost:8080/api/v1/loan", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(loan),
+  //   });
+  //   console.log(response);
+  //   if (!response.ok) {
+  //     alert("Something went wrong");
+  //   }
+  //   alert("Loan created");
+  //   router.push("/loan/list");
+  // };
 
   useEffect(() => {
     let unmounted = false;
