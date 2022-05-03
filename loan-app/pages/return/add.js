@@ -19,12 +19,18 @@ export default function AddReturnLoader() {
         url={"http://localhost:8080/api/v1/loan/" + loanID}
         Component={AddReturn}
       />
-      <Button text="Cancel" href="/loan/list" />
     </div>
   );
 }
 
 function AddReturn() {
+  const [loan, setLoan] = useState({
+    id: "",
+    firstName: "",
+    lastName: "",
+    emailId: "",
+  });
+
   return (
     <div className={styles.app}>
       <h1 className={styles.title}>Create Return</h1>

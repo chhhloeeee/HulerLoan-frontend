@@ -29,9 +29,6 @@ export default function AddLoan() {
     returndate: endDate,
   });
 
-  console.log(loan.issuedate, "issue date");
-  console.log(loan.issuedate.length, "ISSUE TYPE");
-  console.log(loan.returndate, "return date");
   useEffect(() => {
     let unmounted = false;
     async function getEquipment() {
