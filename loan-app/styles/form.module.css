@@ -9,122 +9,127 @@
   color: white;
 }
 .title {
-    color: white;
-    line-height: 1.15;
-    font-size: 3rem;
-    position: absolute;
-    top: 10%;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  color: white;
+  line-height: 1.15;
+  font-size: 3rem;
+  position: absolute;
+  top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.error {
+  color: black;
+  margin-left: 45%;
+  margin-bottom: 1%;
+}
+.loaded {
+  color: white;
+  line-height: 1.15;
+  font-size: 3rem;
+  position: absolute;
+  top: 20%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  .loaded {
-    color: white;
-    line-height: 1.15;
-    font-size: 3rem;
-    position: absolute;
-    top: 20%;
-    margin-left: auto;
-    margin-right: auto;
-  }
+.bttn {
+  text-align: center;
+  border: none;
+  padding: 8px 15px 8px 15px;
+  background: #0069b7;
+  color: #fff;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  width: 150px;
+  position: absolute;
+  left: 5%;
+  bottom: 10%;
+}
 
-.bttn{
-    text-align: center;
-    border: none;
-    padding: 8px 15px 8px 15px;
-    background: #0069B7;
-    color: #fff;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-    width: 150px;
-    position: absolute;
-    left: 5%;
-    bottom: 10%;
-    
-  }
-  
-  .bttn:hover{
-    background-color: #254992;
-  }
+.bttn:hover {
+  background-color: #254992;
+}
 
-  .form{
-    background-color: white;
-    min-width: 600px;
-    padding: 20px 12px 10px 20px;
-    font-family: 'Poppins', sans-serif;
-    position: absolute;
-    top: 30%;
-    margin-left: auto;
-    margin-right: auto;
-    border: 4px solid #0069B7;
-    border-radius: 40px;
-    height: fit-content;
-  }
-  .form label{
-    display: block;
-    margin: 0px 0px 15px 0px;
-    text-align: left;
-    font-size: 20px;
-    color: black;
-  }
-  .form label > span{
-    width: 250px;
-    font-weight: bold;
-    float: left;
-    padding-top: 8px;
-    padding-right: 5px;
-  }
-  .form span.required{
-    color:red;
-  }
-  .form input.inputField ,.form .selectField{ 
-    width: 55%;	
-    font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-  }
-  .form input.inputField ,.form .selectField{
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    border: 1px solid #C2C2C2;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    padding: 7px;
-    outline: none;
-  }
-  .form .inputField:focus .form .selectField{
-    border: 1px solid #09b843;
-  }
-  .form input[type=submit],
-  .form input[type=button]{
-    border: none;
-    padding: 8px 15px 8px 15px;
-    background: #0069B7;
-    color: #fff;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-    width: 200px;
-  }
-  .form input[type=submit]:hover,
-  .form input[type=button]:hover{
-    background: #254992;
-    color: #fff;
-  }
-  .checkbox{
-    margin-top: 7px;
-    height: 20px;
-    width: 20px;
-  }
-  
-  #date{
-    position: relative;
-    margin-left: 250px;
-    top: -30px;
-  }
+.form {
+  background-color: white;
+  min-width: 600px;
+  padding: 20px 12px 10px 20px;
+  font-family: "Poppins", sans-serif;
+  position: absolute;
+  top: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 4px solid #0069b7;
+  border-radius: 40px;
+  height: fit-content;
+}
+.form label {
+  display: block;
+  margin: 0px 0px 15px 0px;
+  text-align: left;
+  font-size: 20px;
+  color: black;
+}
+.form label > span {
+  width: 250px;
+  font-weight: bold;
+  float: left;
+  padding-top: 8px;
+  padding-right: 5px;
+}
+.form span.required {
+  color: red;
+}
+.form input.inputField,
+.form .selectField {
+  width: 55%;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+}
+.form input.inputField,
+.form .selectField {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  border: 1px solid #c2c2c2;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  padding: 7px;
+  outline: none;
+}
+.form .inputField:focus .form .selectField {
+  border: 1px solid #09b843;
+}
+.form input[type="submit"],
+.form input[type="button"] {
+  border: none;
+  padding: 8px 15px 8px 15px;
+  background: #0069b7;
+  color: #fff;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  width: 200px;
+}
+.form input[type="submit"]:hover,
+.form input[type="button"]:hover {
+  background: #254992;
+  color: #fff;
+}
+.checkbox {
+  margin-top: 7px;
+  height: 20px;
+  width: 20px;
+}
+
+#date {
+  position: relative;
+  margin-left: 250px;
+  top: -30px;
+}

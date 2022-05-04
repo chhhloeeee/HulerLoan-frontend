@@ -86,6 +86,7 @@ export default function AddLoan() {
     async function getUsers() {
       const response = await fetch("http://localhost:8080/api/v1/users");
       const body = await response.json();
+      console.log(body);
       if (!unmounted) {
         setUser(
           body.map(({ userID, name }) => ({

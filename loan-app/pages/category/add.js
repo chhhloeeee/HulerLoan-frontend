@@ -3,8 +3,15 @@ import Button from "../../components/button";
 import styles from "../../styles/form.module.css";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { ErrorMessage } from "@hookform/error-message";
+import { useForm } from "react-hook-form";
 
 export default function AddCategory() {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
   const router = useRouter();
   const [category, setCategory] = useState({
     categoryID: "",
@@ -37,18 +44,25 @@ export default function AddCategory() {
     <div className={styles.app}>
       <h1 className={styles.title}>Add Category</h1>
       <div className={styles.form}>
-        <form action="" method="post">
+        <form action="" method="post" onSubmit={handleSubmit(postCategory)}>
           <FormElement
             text="Category"
             type="text"
             name="name"
             onChange={(e) => handleChange(e)}
             className={styles.inputField}
-            required
+            {...register("name", {
+              required: "Name is required",
+            })}
           ></FormElement>
+          <ErrorMessage
+            errors={errors}
+            name="name"
+            render={({ message }) => <p style={styles.error}>{message}</p>}
+          />
           <label>
             <span> </span>
-            <input type="submit" value="Submit" onClick={postCategory} />
+            <input type="submit" value="Submit" />
           </label>
         </form>
       </div>
