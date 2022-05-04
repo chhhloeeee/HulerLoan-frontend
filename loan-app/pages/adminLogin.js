@@ -77,7 +77,7 @@ export default function AdminLogin() {
           name="password"
           value={user.password}
           {...register("password", {
-            required: "Name is required",
+            required: "Password is required",
           })}
         ></input>
         <ErrorMessage
