@@ -2,13 +2,20 @@ import Link from "next/link";
 import { useState } from "react";
 import style from "../styles/login.module.css";
 import { useRouter } from "next/router";
+import { ErrorMessage } from "@hookform/error-message";
+import { useForm } from "react-hook-form";
 
 export default function AdminLogin() {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
   const router = useRouter();
   const [user, setUser] = useState({
+    userID: "",
     name: "",
     password: "",
-    loggedIn: false,
   });
 
   function MyLink(props) {
@@ -46,26 +53,43 @@ export default function AdminLogin() {
     <div className={style.appHeader}>
       <h2 className={style.title}>HulerLoan Login</h2>
       <p className={style.subtitle}>Admin</p>
-      <input
-        className={style.uid}
-        type="text"
-        placeholder="Username"
-        name="name"
-        value={user.name}
-        onChange={(e) => handleChange(e)}
-      ></input>
-      <input
-        className={style.pwd}
-        type="password"
-        placeholder="Password"
-        name="password"
-        value={user.password}
-        onChange={(e) => handleChange(e)}
-      ></input>
-      <label>
-        <span> </span>
-        <input type="submit" value="Submit" onClick={Login} />
-      </label>
+      <form align="center" onSubmit={handleSubmit(Login)}>
+        <input
+          className={style.uid}
+          type="text"
+          placeholder="Username"
+          name="name"
+          onChange={(e) => handleChange(e)}
+          {...register("name", {
+            required: "Name is required",
+          })}
+        ></input>
+        <ErrorMessage
+          errors={errors}
+          name="name"
+          render={({ message }) => <p>{message}</p>}
+        />
+        <br></br>
+        <input
+          className={style.pwd}
+          type="password"
+          placeholder="Password"
+          name="password"
+          value={user.password}
+          {...register("password", {
+            required: "Name is required",
+          })}
+        ></input>
+        <ErrorMessage
+          errors={errors}
+          name="password"
+          render={({ message }) => <p>{message}</p>}
+        />
+        <br></br>
+        <button className={style.logbttn} type="submit">
+          Submit
+        </button>
+      </form>
       <MyLink className={style.accountBttn} href="/">
         Switch account type?
       </MyLink>
