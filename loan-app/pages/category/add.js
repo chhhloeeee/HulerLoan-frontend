@@ -58,7 +58,7 @@ export default function AddCategory() {
           <ErrorMessage
             errors={errors}
             name="name"
-            render={({ message }) => <p style={styles.error}>{message}</p>}
+            render={({ message }) => <p className={styles.error}>{message}</p>}
           />
           <label>
             <span> </span>
