@@ -1,31 +1,34 @@
 .appHeader {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
 
-  .subtitle{
-    margin-top: 10%;
-  }
+.subtitle {
+  margin-top: 10%;
+}
 
-.uid, .pwd, .logbttn {
-    background-color: white;
-    padding: 15px ;
-    border: none;
-    border-radius: 20px;
-    margin-bottom: 1%;
-    width: 250px;
-    font-size: 20px;
-  }
+.uid,
+.pwd,
+.logbttn {
+  color: black;
+  background-color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 20px;
+  margin-bottom: 1%;
+  width: 250px;
+  font-size: 20px;
+}
 
-.logbttn{
-    text-align: center;
-    background-color: #0069B7;
+.logbttn {
+  text-align: center;
+  background-color: #0069b7;
 }
 
 .title {
@@ -38,16 +41,16 @@
   margin-right: auto;
 }
 
-.accountBttn{
+.accountBttn {
   position: absolute;
-  left:5%;
+  left: 5%;
   bottom: 5%;
   text-decoration: underline;
 }
 
-.registerBttn{
+.registerBttn {
   position: absolute;
-  right:5%;
+  right: 5%;
   bottom: 5%;
   text-decoration: underline;
 }

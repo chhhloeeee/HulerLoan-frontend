@@ -50,6 +50,7 @@ function EquipmentTable({ data }) {
           .then((response) => {
             if (!response.ok) {
               alert("Something went wrong");
+              return;
             }
             array.splice(i, 1);
 

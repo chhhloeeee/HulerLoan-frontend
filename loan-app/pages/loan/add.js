@@ -75,6 +75,7 @@ export default function AddLoan() {
   //   console.log(response);
   //   if (!response.ok) {
   //     alert("Something went wrong");
+  //return;
   //   }
   //   alert("Loan created");
   //   router.push("/loan/list");

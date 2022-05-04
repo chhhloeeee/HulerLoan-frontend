@@ -50,6 +50,7 @@ function LoanTable({ data }) {
             if (!response.ok) {
               console.log(response);
               alert("Something went wrong");
+              return;
             }
             array.splice(i, 1);
 

@@ -55,6 +55,7 @@ export default function AddCategory() {
     console.log(response);
     if (!response.ok) {
       alert("Something went wrong");
+      return;
     }
     alert("Specification added");
     router.push("/specs/list");
