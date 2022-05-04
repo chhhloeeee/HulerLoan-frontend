@@ -104,12 +104,11 @@ export default function AddCategory() {
             {...register("description", {
               required: "Description is required",
             })}
-            required
           ></FormElement>
           <ErrorMessage
             errors={errors}
             name="description"
-            render={({ message }) => <p>{message}</p>}
+            render={({ message }) => <p className={styles.error}>{message}</p>}
           />
           <label>
             <span> </span>
