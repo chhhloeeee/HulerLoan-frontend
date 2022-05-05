@@ -3,15 +3,8 @@ import FormElement from "../../components/form";
 import styles from "../../styles/form.module.css";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { ErrorMessage } from "@hookform/error-message";
-import { useForm } from "react-hook-form";
 
 export default function AddUser() {
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
   const router = useRouter();
   const [user, setUser] = useState({
     userID: "",
@@ -48,7 +41,7 @@ export default function AddUser() {
     <div className={styles.app}>
       <h1 className={styles.title}>Create User</h1>
       <div className={styles.form}>
-        <form action="" method="post" onSubmit={handleSubmit(postUser)}>
+        <form action="" method="post">
           <FormElement
             required
             text="Name"
@@ -56,7 +49,8 @@ export default function AddUser() {
             name="name"
             className={styles.inputField}
             value={user.name}
-          ></FormElement>
+            onChange={(e) => handleChange(e)}
+          />
 
           <FormElement
             required
@@ -66,18 +60,8 @@ export default function AddUser() {
             className={styles.inputField}
             value={user.email}
             onChange={(e) => handleChange(e)}
-            {...register("email", {
-              pattern: {
-                value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-                message: "Please enter a valid email",
-              },
-            })}
           />
-          <ErrorMessage
-            errors={errors}
-            name="email"
-            render={({ message }) => <p className={styles.error}>{message}</p>}
-          />
+
           <FormElement
             text="Admin?"
             type="checkbox"
@@ -97,7 +81,7 @@ export default function AddUser() {
           ></FormElement>
           <label>
             <span> </span>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Submit" onClick={postUser} />
           </label>
         </form>
       </div>
