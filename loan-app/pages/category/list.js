@@ -2,7 +2,7 @@ import Button from "../../components/button";
 import styles from "../../styles/form.module.css";
 import Table from "../../components/table";
 import { APILoader } from "../../components/api";
-import { BinIcon } from "../../components/icons";
+import { BinIcon, ItemIcon } from "../../components/icons";
 import { useState } from "react";
 
 function ListCategory() {
@@ -74,7 +74,7 @@ function CategoryTable({ data }) {
           </div>
         </div>,
         <div className="parent inline-flex-parent">
-          <div className="child">Image</div>
+          <ItemIcon name={service.name} />
         </div>,
       ])}
     />
