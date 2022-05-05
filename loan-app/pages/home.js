@@ -11,7 +11,7 @@ export default function Home() {
         <Image
           src={texture}
           width={2150}
-          height={1030}
+          height={1130}
           className={styles.background}
         />
         <h1 className={styles.title}>Welcome to HulerLoan!</h1>
