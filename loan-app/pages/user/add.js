@@ -8,10 +8,10 @@ export default function AddUser() {
   const router = useRouter();
   const [user, setUser] = useState({
     userID: "",
-    name: "",
-    password: "",
+    name: null,
+    password: null,
     admin: false,
-    email: "",
+    email: null,
   });
 
   const handleChange = (event) => {

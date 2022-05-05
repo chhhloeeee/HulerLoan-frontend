@@ -8,7 +8,7 @@ export default function AddCategory() {
   const router = useRouter();
   const [specs, setSpecs] = useState({
     specsID: "",
-    description: "",
+    description: null,
   });
 
   const handleChange = (event) => {
@@ -39,6 +39,7 @@ export default function AddCategory() {
       <div className={styles.form}>
         <form action="" method="post">
           <FormElement
+            required
             text="Description"
             type="text"
             name="description"

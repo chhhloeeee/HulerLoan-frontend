@@ -8,7 +8,7 @@ export default function AddCategory() {
   const router = useRouter();
   const [category, setCategory] = useState({
     categoryID: "",
-    name: "",
+    name: null,
   });
 
   const handleChange = (event) => {
