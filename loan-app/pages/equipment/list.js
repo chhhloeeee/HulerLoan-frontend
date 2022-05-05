@@ -72,6 +72,7 @@ function EquipmentTable({ data }) {
         "Category Name",
         "Specs Description",
         "Availability",
+        "On Loan",
         "Action",
       ]}
       rows={equipmentList.map((service) => [
@@ -79,6 +80,7 @@ function EquipmentTable({ data }) {
         service.categoryName,
         service.specsDescription,
         service.availability,
+        service.onloan,
         <div className="parent inline-flex-parent">
           <div className="child">
             <BinIcon onClick={() => deleteEquipment(service.equipmentID)} />

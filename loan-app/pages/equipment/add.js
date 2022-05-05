@@ -3,8 +3,15 @@ import Button from "../../components/button";
 import styles from "../../styles/form.module.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { ErrorMessage } from "@hookform/error-message";
+import { useForm } from "react-hook-form";
 
 export default function AddEquipment() {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const [categories, setCategory] = useState([
@@ -90,7 +97,7 @@ export default function AddEquipment() {
     <div className={styles.app}>
       <h1 className={styles.title}>Add Equipment</h1>
       <div className={styles.form}>
-        <form action="" method="post">
+        <form action="" method="post" onClick={handleSubmit(postEquipment)}>
           <label>
             <span>
               Category <span className={styles.required}>*</span>
@@ -101,6 +108,9 @@ export default function AddEquipment() {
               className={styles.selectField}
               value={equipment.categoryID}
               onChange={(e) => handleChange(e)}
+              {...register("categroyID", {
+                required: "Category is required",
+              })}
             >
               <option hidden selected>
                 Select...
@@ -112,6 +122,11 @@ export default function AddEquipment() {
               ))}
             </select>
           </label>
+          <ErrorMessage
+            errors={errors}
+            name="categoryID"
+            render={({ message }) => <p className={styles.error}>{message}</p>}
+          />
           <label>
             <span>
               Specs <span className={styles.required}>*</span>
@@ -122,6 +137,9 @@ export default function AddEquipment() {
               className={styles.selectField}
               value={equipment.specsID}
               onChange={(e) => handleChange(e)}
+              {...register("specsID", {
+                required: "Specification is required",
+              })}
             >
               <option hidden selected>
                 Select...
@@ -133,6 +151,11 @@ export default function AddEquipment() {
               ))}
             </select>
           </label>
+          <ErrorMessage
+            errors={errors}
+            name="specsID"
+            render={({ message }) => <p className={styles.error}>{message}</p>}
+          />
           <label>
             <span>
               Availability<span className={styles.required}>*</span>
@@ -143,6 +166,9 @@ export default function AddEquipment() {
               className={styles.selectField}
               value={equipment.availability}
               onChange={(e) => handleChange(e)}
+              {...register("availability", {
+                required: "Availability is required",
+              })}
             >
               <option hidden selected>
                 Select...
@@ -159,9 +185,14 @@ export default function AddEquipment() {
               <option>10</option>
             </select>
           </label>
+          <ErrorMessage
+            errors={errors}
+            name="availability"
+            render={({ message }) => <p className={styles.error}>{message}</p>}
+          />
           <label>
             <span> </span>
-            <input type="submit" value="Submit" onClick={postEquipment} />
+            <input type="submit" value="Submit" />
           </label>
         </form>
       </div>

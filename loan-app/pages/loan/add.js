@@ -2,12 +2,17 @@ import Button from "../../components/button";
 import styles from "../../styles/form.module.css";
 import { useState, useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
-
+import { ErrorMessage } from "@hookform/error-message";
+import { useForm } from "react-hook-form";
 import FormElement from "../../components/form";
-
 import { useRouter } from "next/router";
 
 export default function AddLoan() {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
   var startDate = new Date().toLocaleDateString();
   var end = new Date();
   end.setDate(end.getDate() + 1);
@@ -107,7 +112,12 @@ export default function AddLoan() {
     <div className={styles.app}>
       <h1 className={styles.title}>New Loan</h1>
       <div className={styles.form}>
-        <form action="" method="post" name="form">
+        <form
+          action=""
+          method="post"
+          name="form"
+          onClick={handleSubmit(postLoan)}
+        >
           <label>
             <span>
               ID <span className={styles.required}>*</span>
@@ -118,6 +128,9 @@ export default function AddLoan() {
               className={styles.selectField}
               value={loan.userID}
               onChange={(e) => handleChange(e)}
+              {...register("userID", {
+                required: "ID is required",
+              })}
             >
               <option hidden selected>
                 Select...
@@ -129,6 +142,11 @@ export default function AddLoan() {
               ))}
             </select>
           </label>
+          <ErrorMessage
+            errors={errors}
+            name="userID"
+            render={({ message }) => <p className={styles.error}>{message}</p>}
+          />
           <label>
             <span>
               Item <span className={styles.required}>*</span>
@@ -139,6 +157,9 @@ export default function AddLoan() {
               className={styles.selectField}
               value={loan.equipmentID}
               onChange={(e) => handleChange(e)}
+              {...register("equipmentID", {
+                required: "Item is required",
+              })}
             >
               <option hidden selected>
                 Select...
@@ -150,6 +171,11 @@ export default function AddLoan() {
               ))}
             </select>
           </label>
+          <ErrorMessage
+            errors={errors}
+            name="equipmentID"
+            render={({ message }) => <p className={styles.error}>{message}</p>}
+          />
           <FormElement
             text="From"
             type="date"
@@ -158,7 +184,15 @@ export default function AddLoan() {
             required
             value={loan.issuedate}
             onChange={(e) => handleChange(e)}
+            {...register("issuedate", {
+              required: "Issue Date is required",
+            })}
           ></FormElement>
+          <ErrorMessage
+            errors={errors}
+            name="issuedate"
+            render={({ message }) => <p className={styles.error}>{message}</p>}
+          />
           <FormElement
             text="To"
             type="date"
@@ -167,10 +201,18 @@ export default function AddLoan() {
             required
             value={loan.returndate}
             onChange={(e) => handleChange(e)}
+            {...register("returndate", {
+              required: "Return Date is required",
+            })}
           ></FormElement>
+          <ErrorMessage
+            errors={errors}
+            name="returndate"
+            render={({ message }) => <p className={styles.error}>{message}</p>}
+          />
           <label>
             <span> </span>
-            <input type="submit" value="Submit" onClick={postLoan} />
+            <input type="submit" value="Submit" />
           </label>
         </form>
       </div>

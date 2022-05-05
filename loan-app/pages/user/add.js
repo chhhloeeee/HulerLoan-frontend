@@ -50,7 +50,6 @@ export default function AddUser() {
       <div className={styles.form}>
         <form action="" method="post" onSubmit={handleSubmit(postUser)}>
           <FormElement
-            for="name"
             text="Name"
             type="text"
             name="name"
@@ -67,7 +66,6 @@ export default function AddUser() {
             render={({ message }) => <p className={styles.error}>{message}</p>}
           />
           <FormElement
-            for="email"
             text="Email"
             type="text"
             name="email"
@@ -88,7 +86,6 @@ export default function AddUser() {
             render={({ message }) => <p className={styles.error}>{message}</p>}
           />
           <FormElement
-            for="admin"
             text="Admin?"
             type="checkbox"
             name="admin"
@@ -97,7 +94,6 @@ export default function AddUser() {
             onChange={(e) => handleChange(e)}
           ></FormElement>
           <FormElement
-            for="password"
             text="Password"
             type="password"
             name="password"

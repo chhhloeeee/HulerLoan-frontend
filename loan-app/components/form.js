@@ -12,7 +12,7 @@ const FormElement = ({
   placeholder,
 }) => {
   return (
-    <label for={name}>
+    <label>
       <span>
         {text} <span className={styles.required}>*</span>
       </span>
