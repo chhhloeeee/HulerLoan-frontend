@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "./table.module.css";
 
-function Table({ headers, rows, onRefresh }) {
+function Table({ headers, rows, onRefresh, id }) {
   const [pageNumber, setPageNumber] = useState(1);
   const [autoScroll, setAutoScroll] = useState(true);
   const [intervalID, setIntervalID] = useState(null);
@@ -36,7 +36,7 @@ function Table({ headers, rows, onRefresh }) {
   }
   return (
     <div className={styles.pagination}>
-      <table className={styles.table}>
+      <table className={styles.table} id={id}>
         <thead>
           <tr>
             {headers.map((header) => (

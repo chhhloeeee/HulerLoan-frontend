@@ -31,7 +31,7 @@
   margin-left: auto;
   margin-right: auto;
   color: white;
-  text-shadow: 2px 2px #DADADA;
+  text-shadow: 2px 2px #dadada;
 }
 
 .title,
@@ -51,8 +51,7 @@
   border-radius: 5px;
   padding: 0.75rem;
   font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
+  font-family: "Poppins", sans-serif;
 }
 
 .logo {
@@ -60,7 +59,7 @@
   margin-left: 0.5rem;
 }
 
-.background{
+.background {
   position: absolute;
   z-index: -5;
 }

@@ -65,29 +65,58 @@ function EquipmentTable({ data }) {
     }
     return;
   };
+
+  function SearchFunc() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("equipmentTBL");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[1];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
   return (
-    <Table
-      headers={[
-        "Equipment ID",
-        "Category Name",
-        "Specs Description",
-        "Availability",
-        "On Loan",
-        "Action",
-      ]}
-      rows={equipmentList.map((service) => [
-        service.equipmentID,
-        service.categoryName,
-        service.specsDescription,
-        service.availability,
-        service.onloan,
-        <div className="parent inline-flex-parent">
-          <div className="child">
-            <BinIcon onClick={() => deleteEquipment(service.equipmentID)} />
-          </div>
-        </div>,
-      ])}
-    />
+    <>
+      <input
+        type="text"
+        id="myInput"
+        onKeyUp={SearchFunc}
+        placeholder="Search for names.."
+        className={styles.search}
+      ></input>
+      <Table
+        id="equipmentTBL"
+        headers={[
+          "Equipment ID",
+          "Category Name",
+          "Specs Description",
+          "Availability",
+          "On Loan",
+          "Action",
+        ]}
+        rows={equipmentList.map((service) => [
+          service.equipmentID,
+          service.categoryName,
+          service.specsDescription,
+          service.availability,
+          service.onloan,
+          <div className="parent inline-flex-parent">
+            <div className="child">
+              <BinIcon onClick={() => deleteEquipment(service.equipmentID)} />
+            </div>
+          </div>,
+        ])}
+      />
+    </>
   );
 }
 
