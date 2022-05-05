@@ -25,7 +25,6 @@ export default function AddLoan() {
     dayselapsed: "0",
     issuedate: startDate,
     returndate: endDate,
-    equipmentAvailable: equipment.availability,
   });
 
   useEffect(() => {

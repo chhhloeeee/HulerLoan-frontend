@@ -15,6 +15,7 @@ export default function AddEquipment() {
     categoryID: "",
     specsID: "",
     availability: "",
+    onloan: "",
   });
   const [specs, setSpecs] = useState([{ label: "Loading...", value: "" }]);
 
