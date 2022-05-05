@@ -3,15 +3,8 @@ import Button from "../../components/button";
 import styles from "../../styles/form.module.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { ErrorMessage } from "@hookform/error-message";
-import { useForm } from "react-hook-form";
 
 export default function AddCategory() {
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const [specs, setSpecs] = useState({
@@ -72,7 +65,7 @@ export default function AddCategory() {
     <div className={styles.app}>
       <h1 className={styles.title}>Add Specs</h1>
       <div className={styles.form}>
-        <form action="" method="post" onSubmit={handleSubmit(postSpecs)}>
+        <form action="" method="post">
           <label>
             <span>
               Category <span className={styles.required}>*</span>
@@ -97,23 +90,16 @@ export default function AddCategory() {
             </select>
           </label>
           <FormElement
+            required
             text="Description"
             type="text"
             name="description"
             onChange={(e) => handleChange(e)}
             className={styles.inputField}
-            {...register("description", {
-              required: "Description is required",
-            })}
           ></FormElement>
-          <ErrorMessage
-            errors={errors}
-            name="description"
-            render={({ message }) => <p className={styles.error}>{message}</p>}
-          />
           <label>
             <span> </span>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Submit" onSubmit={postSpecs} />
           </label>
         </form>
       </div>

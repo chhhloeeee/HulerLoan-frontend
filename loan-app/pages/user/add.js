@@ -50,22 +50,16 @@ export default function AddUser() {
       <div className={styles.form}>
         <form action="" method="post" onSubmit={handleSubmit(postUser)}>
           <FormElement
+            required
             text="Name"
             type="text"
             name="name"
             className={styles.inputField}
             value={user.name}
-            onChange={(e) => handleChange(e)}
-            {...register("name", {
-              required: "Name is required",
-            })}
           ></FormElement>
-          <ErrorMessage
-            errors={errors}
-            name="name"
-            render={({ message }) => <p className={styles.error}>{message}</p>}
-          />
+
           <FormElement
+            required
             text="Email"
             type="text"
             name="email"
@@ -73,7 +67,6 @@ export default function AddUser() {
             value={user.email}
             onChange={(e) => handleChange(e)}
             {...register("email", {
-              required: "Email is required",
               pattern: {
                 value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
                 message: "Please enter a valid email",
@@ -94,21 +87,14 @@ export default function AddUser() {
             onChange={(e) => handleChange(e)}
           ></FormElement>
           <FormElement
+            required
             text="Password"
             type="password"
             name="password"
             className={styles.inputField}
             value={user.password}
             onChange={(e) => handleChange(e)}
-            {...register("password", {
-              required: "Password is required",
-            })}
           ></FormElement>
-          <ErrorMessage
-            errors={errors}
-            name="password"
-            render={({ message }) => <p className={styles.error}>{message}</p>}
-          />
           <label>
             <span> </span>
             <input type="submit" value="Submit" />
