@@ -64,7 +64,7 @@ function CategoryTable({ data }) {
   };
   return (
     <Table
-      headers={["Category ID", "Name", "Action"]}
+      headers={["Category ID", "Name", "Action", "Image"]}
       rows={categoryList.map((service) => [
         service.categoryID,
         service.name,
@@ -72,6 +72,9 @@ function CategoryTable({ data }) {
           <div className="child">
             <BinIcon onClick={() => deleteCategory(service.categoryID)} />
           </div>
+        </div>,
+        <div className="parent inline-flex-parent">
+          <div className="child">Image</div>
         </div>,
       ])}
     />
