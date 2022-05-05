@@ -2,7 +2,7 @@ import Button from "../../components/button";
 import styles from "../../styles/form.module.css";
 import Table from "../../components/table";
 import { APILoader } from "../../components/api";
-import { BinIcon } from "../../components/icons";
+import { BinIcon, SearchIcon } from "../../components/icons";
 import { useState } from "react";
 
 function ListEquipment() {

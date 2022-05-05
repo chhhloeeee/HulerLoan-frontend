@@ -1,5 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faRightLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrash,
+  faRightLeft,
+  faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
 import laptop from "../images/laptop.jpg";
 import keyboard from "../images/keyboard.jpeg";
 import monitor from "../images/monitor.webp";
