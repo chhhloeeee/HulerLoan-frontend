@@ -30,7 +30,7 @@ export default function AddEquipment() {
     async function getCategories() {
       const response = await fetch("http://localhost:8080/api/v1/category");
       const body = await response.json();
-      console.log(body);
+      console.log(body, "CATEGORY RESP");
       console.log(response);
       if (!unmounted) {
         setCategory(
@@ -53,6 +53,7 @@ export default function AddEquipment() {
     async function getSpecs() {
       const response = await fetch("http://localhost:8080/api/v1/specs");
       const body = await response.json();
+      console.log(body, "Specs RESP");
       if (!unmounted) {
         setSpecs(
           body.map(({ description, specsID }) => ({

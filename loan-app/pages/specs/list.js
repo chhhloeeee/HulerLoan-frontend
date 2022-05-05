@@ -64,10 +64,9 @@ function SpecsTable({ data }) {
   };
   return (
     <Table
-      headers={["Specs ID", "CategoryID", "Description", "Action"]}
+      headers={["Specs ID", "Description", "Action"]}
       rows={specsList.map((service) => [
         service.specsID,
-        service.categoryID,
         service.description,
         <div className="parent inline-flex-parent">
           <div className="child">

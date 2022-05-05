@@ -9,7 +9,6 @@ export default function AddCategory() {
   const router = useRouter();
   const [specs, setSpecs] = useState({
     specsID: "",
-    categoryID: "",
     description: "",
   });
   const [category, setCategory] = useState([
@@ -21,28 +20,6 @@ export default function AddCategory() {
     setSpecs({ ...specs, [event.target.name]: value });
   };
 
-  useEffect(() => {
-    let unmounted = false;
-    async function getCategory() {
-      const response = await fetch("http://localhost:8080/api/v1/category");
-      const body = await response.json();
-      console.log(body);
-      console.log(response);
-      if (!unmounted) {
-        setCategory(
-          body.map(({ categoryID, name }) => ({
-            label: categoryID + ": " + name,
-            value: categoryID,
-          }))
-        );
-        setLoading(false);
-      }
-    }
-    getCategory();
-    return () => {
-      unmounted = true;
-    };
-  }, []);
   const postSpecs = async (e) => {
     e.preventDefault();
     const response = await fetch("http://localhost:8080/api/v1/specs", {
@@ -66,29 +43,6 @@ export default function AddCategory() {
       <h1 className={styles.title}>Add Specs</h1>
       <div className={styles.form}>
         <form action="" method="post">
-          <label>
-            <span>
-              Category <span className={styles.required}>*</span>
-            </span>
-            <select
-              required
-              disabled={loading}
-              id="category"
-              name="categoryID"
-              className={styles.selectField}
-              value={category.categoryID}
-              onChange={(e) => handleChange(e)}
-            >
-              <option hidden selected>
-                Select...
-              </option>
-              {category.map(({ label, value }) => (
-                <option key={value} value={value}>
-                  {label}
-                </option>
-              ))}
-            </select>
-          </label>
           <FormElement
             required
             text="Description"
