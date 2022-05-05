@@ -12,6 +12,7 @@ export default function AddUser() {
     password: null,
     admin: false,
     email: null,
+    username: null,
   });
 
   const handleChange = (event) => {
@@ -49,6 +50,15 @@ export default function AddUser() {
             name="name"
             className={styles.inputField}
             value={user.name}
+            onChange={(e) => handleChange(e)}
+          />
+          <FormElement
+            required
+            text="Username"
+            type="text"
+            name="username"
+            className={styles.inputField}
+            value={user.username}
             onChange={(e) => handleChange(e)}
           />
 

@@ -64,10 +64,11 @@ function UsersTable({ data }) {
   };
   return (
     <Table
-      headers={["User ID", "Name", "Admin?", "Email", "Action"]}
+      headers={["User ID", "Name", "Username", "Admin?", "Email", "Action"]}
       rows={userList.map((service) => [
         service.userID,
         service.name,
+        service.username,
         service.admin.toString(),
         service.email,
         <div className="parent inline-flex-parent">
