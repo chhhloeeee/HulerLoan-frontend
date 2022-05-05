@@ -49,6 +49,7 @@ export default function AddCategory() {
             text="Category"
             type="text"
             name="name"
+            value={category.name}
             onChange={(e) => handleChange(e)}
             className={styles.inputField}
             {...register("name", {

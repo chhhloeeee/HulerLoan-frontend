@@ -78,15 +78,13 @@ export default function AddCategory() {
               Category <span className={styles.required}>*</span>
             </span>
             <select
+              required
               disabled={loading}
               id="category"
               name="categoryID"
               className={styles.selectField}
               value={category.categoryID}
               onChange={(e) => handleChange(e)}
-              {...register("categoryID", {
-                required: "Category is required",
-              })}
             >
               <option hidden selected>
                 Select...
@@ -98,11 +96,6 @@ export default function AddCategory() {
               ))}
             </select>
           </label>
-          <ErrorMessage
-            errors={errors}
-            name="description"
-            render={({ message }) => <p className={styles.error}>{message}</p>}
-          />
           <FormElement
             text="Description"
             type="text"
