@@ -6,16 +6,10 @@ import { ErrorMessage } from "@hookform/error-message";
 import { useForm } from "react-hook-form";
 
 export default function AdminLogin() {
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
   const router = useRouter();
   const [user, setUser] = useState({
-    userID: "",
-    name: "",
-    password: "",
+    username: null,
+    password: null,
   });
 
   function MyLink(props) {
@@ -33,8 +27,9 @@ export default function AdminLogin() {
   };
 
   const Login = async (e) => {
+    console.log(user, "user");
     e.preventDefault();
-    const response = await fetch("http://localhost:8080/api/v1/users/login", {
+    const response = await fetch("http://localhost:8080/api/v1/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -53,40 +48,27 @@ export default function AdminLogin() {
     <div className={style.appHeader}>
       <h2 className={style.title}>HulerLoan Login</h2>
       <p className={style.subtitle}>Admin</p>
-      <form align="center" onSubmit={handleSubmit(Login)}>
+      <form align="center">
         <input
           className={style.uid}
           type="text"
           placeholder="Username"
-          name="name"
+          name="username"
           onChange={(e) => handleChange(e)}
-          {...register("name", {
-            required: "Name is required",
-          })}
+          required
         ></input>
-        <ErrorMessage
-          errors={errors}
-          name="name"
-          render={({ message }) => <p>{message}</p>}
-        />
+
         <br></br>
         <input
           className={style.pwd}
-          type="password"
-          placeholder="Password"
+          type="text"
           name="password"
           value={user.password}
-          {...register("password", {
-            required: "Password is required",
-          })}
+          onChange={(e) => handleChange(e)}
         ></input>
-        <ErrorMessage
-          errors={errors}
-          name="password"
-          render={({ message }) => <p>{message}</p>}
-        />
+
         <br></br>
-        <button className={style.logbttn} type="submit">
+        <button className={style.logbttn} type="submit" onClick={Login}>
           Submit
         </button>
       </form>
