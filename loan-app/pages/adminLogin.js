@@ -14,7 +14,6 @@ export default function ListUsers() {
 }
 
 function AdminLogin({ data }) {
-  console.log(data);
   const router = useRouter();
   const [user, setUser] = useState({
     username: "",
@@ -37,12 +36,17 @@ function AdminLogin({ data }) {
 
   const Login = async (e) => {
     e.preventDefault();
-
-    for (var key in data) {
-      for (var key1 in data[key]) {
-        if (user.username && user.password === data[key][key1]) {
-          alert("found");
-        }
+    const array = [...data];
+    for (let i = 0; i < array.length; i++) {
+      if (
+        user.username === array[i].username &&
+        user.password === array[i].password &&
+        array[i].admin === true
+      ) {
+        alert("Success");
+        return router.push("/home");
+      } else {
+        return alert("Unsuccessful login attempt");
       }
     }
   };

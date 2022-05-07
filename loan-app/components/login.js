@@ -14,7 +14,6 @@ export default function ListUsers() {
 }
 
 function UserLogin({ data }) {
-  console.log(data);
   const router = useRouter();
   const [user, setUser] = useState({
     username: null,
@@ -37,9 +36,8 @@ function UserLogin({ data }) {
 
   const Login = async (e) => {
     e.preventDefault();
-    console.log(user, "user");
     const array = [...data];
-    for (let i = 0; i < array.length; i++) {
+    for (let i = 1; i < array.length; i++) {
       if (
         user.username === array[i].username &&
         user.password === array[i].password &&

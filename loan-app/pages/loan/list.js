@@ -22,7 +22,6 @@ function ListLoan() {
 //USerTable function displays all equipment in a table
 function LoanTable({ data }) {
   console.log(data);
-  const router = useRouter();
   const [loan, setLoan] = useState(data);
 
   let loanList = loan.sort((a, b) => {
