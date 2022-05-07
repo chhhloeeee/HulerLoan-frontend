@@ -13,10 +13,9 @@ export default function AdminLogin() {
   } = useForm();
   const router = useRouter();
   const [user, setUser] = useState({
-    userID: "",
-    name: "",
-    password: "",
-    loggedIn: false,
+    username: null,
+    password: null,
+    admin: false,
   });
 
   function MyLink(props) {
@@ -35,20 +34,18 @@ export default function AdminLogin() {
 
   const Login = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:8080/api/v1/users/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
-    console.log(response);
-    if (!response.ok) {
-      alert("Something went wrong");
+    const username = user.username;
+    const password = user.password;
+    const admin = user.admin;
+
+    if (username === "Harv" && password === "bert" && admin === false) {
+      alert("You have successfully logged in.");
+      router.push("/home");
+    } else {
+      // Otherwise, make the login error message show (change its oppacity)
+      alert("Incorrect username or password");
       return;
     }
-    alert("Success");
-    router.push("/home");
   };
   return (
     <div className={style.appHeader}>

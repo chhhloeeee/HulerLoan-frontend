@@ -8,6 +8,7 @@ export default function AdminLogin() {
   const [user, setUser] = useState({
     username: null,
     password: null,
+    admin: true,
   });
 
   function MyLink(props) {
@@ -25,11 +26,10 @@ export default function AdminLogin() {
   };
 
   const Login = async (e) => {
-    console.log(user, "user");
     e.preventDefault();
     const username = user.username;
     const password = user.password;
-    const admin = true;
+    const admin = user.admin;
 
     if (username === "chloe1" && password === "cat" && admin === true) {
       alert("You have successfully logged in.");
