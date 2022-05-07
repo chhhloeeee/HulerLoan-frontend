@@ -2,9 +2,8 @@ import Button from "../../components/button";
 import styles from "../../styles/form.module.css";
 import Table from "../../components/table";
 import { APILoader } from "../../components/api";
-import { BinIcon, ReturnIcon } from "../../components/icons";
+import { ReturnIcon } from "../../components/icons";
 import { useState } from "react";
-import { useRouter } from "next/router";
 
 function ListLoan() {
   return (
@@ -21,7 +20,6 @@ function ListLoan() {
 
 //USerTable function displays all equipment in a table
 function LoanTable({ data }) {
-  console.log(data);
   const [loan, setLoan] = useState(data);
 
   let loanList = loan.sort((a, b) => {
