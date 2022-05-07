@@ -1,9 +1,7 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import style from "../styles/login.module.css";
 import { useRouter } from "next/router";
-import { ErrorMessage } from "@hookform/error-message";
-import { useForm } from "react-hook-form";
 
 export default function AdminLogin() {
   const router = useRouter();
@@ -29,20 +27,18 @@ export default function AdminLogin() {
   const Login = async (e) => {
     console.log(user, "user");
     e.preventDefault();
-    const response = await fetch("http://localhost:8080/api/v1/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
-    console.log(response);
-    if (!response.ok) {
-      alert("Something went wrong");
+    const username = user.username;
+    const password = user.password;
+    const admin = true;
+
+    if (username === "chloe1" && password === "cat" && admin === true) {
+      alert("You have successfully logged in.");
+      router.push("/home");
+    } else {
+      // Otherwise, make the login error message show (change its oppacity)
+      alert("Incorrect username or password");
       return;
     }
-    alert("Success");
-    router.push("/home");
   };
   return (
     <div className={style.appHeader}>
@@ -62,6 +58,7 @@ export default function AdminLogin() {
         <input
           className={style.pwd}
           type="text"
+          placeholder="Password"
           name="password"
           value={user.password}
           onChange={(e) => handleChange(e)}
