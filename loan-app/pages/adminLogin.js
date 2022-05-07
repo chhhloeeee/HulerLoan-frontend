@@ -1,14 +1,24 @@
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import style from "../styles/login.module.css";
 import { useRouter } from "next/router";
+import { APILoader } from "../components/api";
 
-export default function AdminLogin() {
+export default function ListUsers() {
+  return (
+    <APILoader
+      url={"http://localhost:8080/api/v1/users"}
+      Component={AdminLogin}
+    />
+  );
+}
+
+function AdminLogin({ data }) {
+  console.log(data);
   const router = useRouter();
   const [user, setUser] = useState({
-    username: null,
-    password: null,
-    admin: true,
+    username: "",
+    password: "",
   });
 
   function MyLink(props) {
@@ -27,17 +37,13 @@ export default function AdminLogin() {
 
   const Login = async (e) => {
     e.preventDefault();
-    const username = user.username;
-    const password = user.password;
-    const admin = user.admin;
 
-    if (username === "chloe1" && password === "cat" && admin === true) {
-      alert("You have successfully logged in.");
-      router.push("/home");
-    } else {
-      // Otherwise, make the login error message show (change its oppacity)
-      alert("Incorrect username or password");
-      return;
+    for (var key in data) {
+      for (var key1 in data[key]) {
+        if (user.username && user.password === data[key][key1]) {
+          alert("found");
+        }
+      }
     }
   };
   return (
@@ -50,6 +56,7 @@ export default function AdminLogin() {
           type="text"
           placeholder="Username"
           name="username"
+          value={user.username}
           onChange={(e) => handleChange(e)}
           required
         ></input>

@@ -2,20 +2,23 @@ import Link from "next/link";
 import { useState } from "react";
 import style from "../styles/login.module.css";
 import { useRouter } from "next/router";
-import { ErrorMessage } from "@hookform/error-message";
-import { useForm } from "react-hook-form";
+import { APILoader } from "../components/api";
 
-export default function AdminLogin() {
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
+export default function ListUsers() {
+  return (
+    <APILoader
+      url={"http://localhost:8080/api/v1/users"}
+      Component={UserLogin}
+    />
+  );
+}
+
+function UserLogin({ data }) {
+  console.log(data);
   const router = useRouter();
   const [user, setUser] = useState({
     username: null,
     password: null,
-    admin: false,
   });
 
   function MyLink(props) {
@@ -34,56 +37,48 @@ export default function AdminLogin() {
 
   const Login = async (e) => {
     e.preventDefault();
-    const username = user.username;
-    const password = user.password;
-    const admin = user.admin;
-
-    if (username === "Harv" && password === "bert" && admin === false) {
-      alert("You have successfully logged in.");
-      router.push("/home");
-    } else {
-      // Otherwise, make the login error message show (change its oppacity)
-      alert("Incorrect username or password");
-      return;
+    console.log(user, "user");
+    const array = [...data];
+    for (let i = 0; i < array.length; i++) {
+      if (
+        user.username === array[i].username &&
+        user.password === array[i].password &&
+        array[i].admin === false
+      ) {
+        alert("Success");
+        return router.push("/home");
+      } else {
+        return alert("Unsuccessful login attempt");
+      }
     }
   };
   return (
     <div className={style.appHeader}>
       <h2 className={style.title}>HulerLoan Login</h2>
       <p className={style.subtitle}>User</p>
-      <form align="center" onSubmit={handleSubmit(Login)}>
+      <form align="center">
         <input
           className={style.uid}
           type="text"
           placeholder="Username"
-          name="name"
+          name="username"
+          value={user.username}
           onChange={(e) => handleChange(e)}
-          {...register("name", {
-            required: "Name is required",
-          })}
+          required
         ></input>
-        <ErrorMessage
-          errors={errors}
-          name="name"
-          render={({ message }) => <p>{message}</p>}
-        />
+
         <br></br>
         <input
           className={style.pwd}
-          type="password"
+          type="text"
           placeholder="Password"
           name="password"
-          {...register("password", {
-            required: "Name is required",
-          })}
+          value={user.password}
+          onChange={(e) => handleChange(e)}
         ></input>
-        <ErrorMessage
-          errors={errors}
-          name="password"
-          render={({ message }) => <p>{message}</p>}
-        />
+
         <br></br>
-        <button className={style.logbttn} type="submit">
+        <button className={style.logbttn} type="submit" onClick={Login}>
           Submit
         </button>
       </form>
