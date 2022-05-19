@@ -68,7 +68,7 @@ function AdminLogin({ data }) {
         <br></br>
         <input
           className={style.pwd}
-          type="text"
+          type="password"
           placeholder="Password"
           name="password"
           value={user.password}

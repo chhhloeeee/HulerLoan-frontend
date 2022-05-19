@@ -37,14 +37,14 @@ export const ReturnIcon = ({ onClick, loanList }) => {
 
 export const ItemIcon = ({ name }) => {
   if (name === "Laptop") {
-    return <Image src={laptop} alt="laptop" width={122} height={100} />;
+    return <Image src={laptop} alt="laptop" width={150} height={100} />;
   }
-  if (name === "keyboard") {
-    return <Image src={keyboard} alt="keyboard" width={122} height={100} />;
+  if (name === "Mouse") {
+    return <Image src={mouse} alt="mouse" width={150} height={100} />;
   }
   if (name === "Monitor") {
-    return <Image src={monitor} alt="monitor" width={122} height={100} />;
+    return <Image src={monitor} alt="monitor" width={150} height={100} />;
   }
 
-  return <Image src={mouse} alt="mouse" width={122} height={100} />;
+  return <Image src={keyboard} alt="keyboard" width={150} height={100} />;
 };
