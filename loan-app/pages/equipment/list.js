@@ -52,6 +52,7 @@ function EquipmentTable({ data }) {
               alert("Something went wrong");
               return;
             }
+            alert("Delete Success");
             array.splice(i, 1);
 
             setEquipment(array);
@@ -61,6 +62,17 @@ function EquipmentTable({ data }) {
             alert("Internal Server Error");
             return;
           });
+      }
+    }
+    return;
+  };
+
+  const printEquipment = (equipmentID) => {
+    const array = [...equipmentList];
+    for (let i = 0; i < array.length; i++) {
+      if (equipmentID === array[i].equipmentID) {
+        alert("Print Success");
+        console.log(array[i], "PRINTED ROW");
       }
     }
     return;
@@ -112,7 +124,7 @@ function EquipmentTable({ data }) {
           <div className="parent inline-flex-parent">
             <div className="child">
               <BinIcon onClick={() => deleteEquipment(service.equipmentID)} />
-              <PrintIcon />
+              <PrintIcon onClick={() => printEquipment(service.equipmentID)} />
             </div>
           </div>,
         ])}

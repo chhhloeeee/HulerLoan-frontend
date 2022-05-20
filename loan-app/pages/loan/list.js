@@ -49,6 +49,7 @@ function LoanTable({ data }) {
               alert("Something went wrong");
               return;
             }
+            alert("Return Success");
             array.splice(i, 1);
 
             setLoan(array);

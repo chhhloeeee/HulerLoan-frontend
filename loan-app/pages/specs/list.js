@@ -49,6 +49,7 @@ function SpecsTable({ data }) {
               alert("Something went wrong");
               return;
             }
+            alert("Delete Success");
             array.splice(i, 1);
 
             setSpecs(array);
