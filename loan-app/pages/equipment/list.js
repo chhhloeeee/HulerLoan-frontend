@@ -72,7 +72,20 @@ function EquipmentTable({ data }) {
     for (let i = 0; i < array.length; i++) {
       if (equipmentID === array[i].equipmentID) {
         alert("Print Success");
-        console.log(array[i], "PRINTED ROW");
+        var element = document.createElement("a");
+        var text = JSON.stringify(array[i], null, 2);
+        element.setAttribute(
+          "href",
+          "data:text/plain;charset=utf-8," + encodeURIComponent(text)
+        );
+        element.setAttribute("download", "Equipment");
+
+        element.style.display = "none";
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
       }
     }
     return;
