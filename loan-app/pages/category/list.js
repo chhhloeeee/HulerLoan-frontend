@@ -49,6 +49,7 @@ function CategoryTable({ data }) {
               alert("Something went wrong");
               return;
             }
+            alert("Delete Success");
             array.splice(i, 1);
 
             setCategory(array);
