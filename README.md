@@ -1,6 +1,6 @@
-# LoanSystem
+# HulerLoan-frontend
 
-LoanSystem is the frontend NextJs app for HulerLoan
+HulerLoan-frontend is the frontend NextJs app for HulerLoan
 
 ## Getting started
 
