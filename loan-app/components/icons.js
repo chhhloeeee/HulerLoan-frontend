@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTrash,
   faRightLeft,
-  faMagnifyingGlass,
+  faPrint,
 } from "@fortawesome/free-solid-svg-icons";
 import laptop from "../images/laptop.jpg";
 import keyboard from "../images/keyboard.jpeg";
@@ -14,6 +14,18 @@ export const BinIcon = ({ onClick }) => {
   return (
     <FontAwesomeIcon
       icon={faTrash}
+      style={{ color: "black", fontSize: 30 }}
+      alt="bin"
+      className="center"
+      onClick={onClick}
+    />
+  );
+};
+
+export const PrintIcon = ({ onClick }) => {
+  return (
+    <FontAwesomeIcon
+      icon={faPrint}
       style={{ color: "black", fontSize: 30 }}
       alt="bin"
       className="center"

@@ -2,7 +2,7 @@ import Button from "../../components/button";
 import styles from "../../styles/form.module.css";
 import Table from "../../components/table";
 import { APILoader } from "../../components/api";
-import { BinIcon, SearchIcon } from "../../components/icons";
+import { BinIcon, PrintIcon } from "../../components/icons";
 import { useState } from "react";
 
 function ListEquipment() {
@@ -112,6 +112,7 @@ function EquipmentTable({ data }) {
           <div className="parent inline-flex-parent">
             <div className="child">
               <BinIcon onClick={() => deleteEquipment(service.equipmentID)} />
+              <PrintIcon />
             </div>
           </div>,
         ])}
